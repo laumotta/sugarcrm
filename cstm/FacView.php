@@ -138,7 +138,7 @@
 								</td>
 								<td width="37.5%">
 									<select name="regimen_fiscal" id="regimen_fiscal" title="" >
-										<option label="" value="">Selecciona una opcion...</option>
+										<option label="" value="<?php echo $emi->schema_register_c;?>"><?php echo $emi->schema_register_c;?></option>
 										<option value="601">General de Ley Personas Morales</option>
 										<option value="603">Personas Morales con Fines no Lucrativos</option>
 										<option value="605">Sueldos y Salarios e Ingresos Asimilados a Salarios</option>

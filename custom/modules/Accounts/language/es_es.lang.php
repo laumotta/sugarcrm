@@ -1,5 +1,5 @@
 <?php
-// created: 2017-06-14 09:54:49
+// created: 2017-12-01 22:53:38
 $mod_strings = array (
   'LBL_TYPE_CUSTOMER' => 'Tipo de contribuyente',
   'LBL_RFC' => 'RFC',
@@ -93,5 +93,6 @@ $mod_strings = array (
   'LBL_ACCOUNT_EJECUTIVE' => 'Ejecutivo de cuenta',
   'LBL_SEND_CAMPAIGN' => 'Enviar campaña',
   'LBL_MARK_FOR_PROCESS' => 'Marcado para procesar',
+  'LBL_REGIMEN_FISCAL' => 'regimen fiscal',
 );
 ?>

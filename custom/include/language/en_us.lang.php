@@ -1129,3 +1129,7 @@ $GLOBALS['app_list_strings']['esquema_list']=array (
   'Comision' => 'Comisiones Heredadas',
   '' => '',
 );
+$GLOBALS['app_list_strings']['regimen_list']=array (
+  '' => '',
+  601 => 'General de Ley Personas Morales',
+);
