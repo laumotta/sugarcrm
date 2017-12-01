@@ -1,0 +1,31 @@
+<?php
+// created: 2012-02-04 14:09:41
+$mod_strings = array (
+  'LBL_ACCOUNT' => 'Cuenta',
+  'LBL_ACCOUNTS' => 'accounts',
+  'LBL_CATEGORY' => 'Categoria',
+  'LBL_AMOUNT_CIVA' => 'Monto C/IVA',
+  'LBL_AMOUNT' => 'Monto S/IVA',
+  'LBL_P_SIFEI' => 'SIFEI',
+  'LBL_P_RED' => 'RED',
+  'LBL_P_ASSIGNED' => 'Vendedor',
+  'LBL_P_N1' => 'Nivel 1',
+  'LBL_P_N2' => 'Nivel 2',
+  'LBL_P_REMANENTE' => 'Remanente',
+  'LBL_REPORTS_N1' => 'Reclutador N1',
+  'LBL_REPORTS_N2' => 'Reclutador N2',
+  'LBL_N1' => 'N1',
+  'LBL_N2' => 'N2',
+  'LBL_N3' => 'N3',
+  'LBL_EDITVIEW_PANEL1' => 'Comisiones',
+  'LBL_N0' => 'N0',
+  'LBL_DETAILVIEW_PANEL1' => 'Nuevo Panel 1',
+  'LBL_STATUS' => 'Estado',
+  'LBL_M_RED' => 'm red',
+  'LBL_M_SIFEI' => 'm sifei',
+  'LBL_M_N1' => 'm n1',
+  'LBL_M_N2' => 'm n2',
+  'LBL_M_REMANENTE' => 'm remanente',
+  'LBL_M_ASSIGNED' => 'm assigned',
+);
+?>

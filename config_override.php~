@@ -1,0 +1,33 @@
+<?php
+/***CONFIGURATOR***/
+$sugar_config['http_referer']['list']['0'] = 'bl152w.blu152.mail.live.com';
+$sugar_config['http_referer']['list']['1'] = 'www.sifei.com.mx';
+$sugar_config['http_referer']['list']['2'] = 'aula.sifeidistribuciones.com.mx';
+$sugar_config['http_referer']['list']['3'] = 'portal.sifeidistribuciones.com.mx';
+$sugar_config['http_referer']['list']['4'] = 'sifei.com.mx';
+$sugar_config['disabled_themes'] = '';
+$sugar_config['default_module_favicon'] = false;
+$sugar_config['stack_trace_errors'] = false;
+$sugar_config['developerMode'] = false;
+$sugar_config['dbconfigoption']['collation'] = 'utf8_general_ci';
+$sugar_config['default_language'] = 'es_es';
+$sugar_config['lock_homepage'] = true;
+$sugar_config['default_currency_iso4217'] = 'MXM';
+$sugar_config['default_currency_name'] = 'Mexican Pesos';
+$sugar_config['logger']['level'] = 'off';
+$sugar_config['logger']['file']['name'] = 'S2';
+$sugar_config['default_export_charset'] = 'UTF-8';
+$sugar_config['use_real_names'] = false;
+$sugar_config['list_max_entries_per_page'] = '700';
+$sugar_config['list_max_entries_per_subpanel'] = '100';
+$sugar_config['verify_client_ip'] = false;
+$sugar_config['upload_maxsize'] = '4000000';
+$sugar_config['lock_subpanels'] = false;
+$sugar_config['default_date_format'] = 'd/m/Y';
+$sugar_config['default_time_format'] = 'H.i';
+$sugar_config['passwordsetting']['generatepasswordtmpl'] = '311f49a9-1fee-cd3e-e6ac-4d2215a5cba1';
+$sugar_config['passwordsetting']['lostpasswordtmpl'] = '31c27c21-a548-2dbe-dccf-4d221599f6af';
+$sugar_config['passwordsetting']['systexpirationtype'] = '1';
+$sugar_config['SAML_loginurl'] = '';
+$sugar_config['SAML_X509Cert'] = '';
+/***CONFIGURATOR***/

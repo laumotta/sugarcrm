@@ -1,0 +1,38 @@
+NOTAS SOBRE LA INSTALACIÓN DEL PACK DE LENGUAJE ESPAÑOL (ESPAÑA).
+$Id: LEEME-i18n.txt,v 1.2 2007/12/08 05:29:19 aserrano Exp $
+
+
+ADVERTENCIA: 
+Si se va a eliminar una versión anterior de este paquete de lenguaje, antes de proceder a su desinstalación:
+- Hacer clic en Mostrar Detalles para ver la lista de ficheros a ser eliminados en la desinstalación, y desmarcar los siguientes (si no están ya desmarcados).
+- Si la versión a desinstalar es la 4.5.1c o anterior:
+	- ./jscalendar/calendar-setup_3.js
+	- ./jscalendar/lang/calendar-es.js
+- Además, si la versión a desinstalar es la 4.5.0x o anterior:  
+	- ./include/language/jsLanguage.php
+- Proceder con la desinstalación.
+
+
+1. Instalar los ficheros del pack:
+Utilizar el Cargador de Módulos de la sección de Administración.
+
+
+2. Para soporte del calendario en español, debe de editar index.php, reemplazando:
+echo '<script type="text/javascript" src="jscalendar/lang/calendar-en.js"></script>';
+
+por:
+echo '<script type="text/javascript" src="jscalendar/lang/calendar-'.substr($current_language,0,2).'.js"></script>';
+
+Para más detalles, ver http://www.sugarcrm.com/forums/archive/index.php/t-1633.html.
+
+
+3. Para ver adecuadamente los literales de los gráficos, hay que modificar el fichero include/charts/Charts.php, para que donde figura:
+if ($app_strings['LBL_CHARSET'] == "UTF-8") {
+ó
+if ($app_strings['LBL_CHARSET'] != "UTF-8") {
+se cambie por:
+$file_encoding = mb_detect_encoding($xml_file);
+if ($app_strings['LBL_CHARSET'] == "UTF-8" && $file_encoding != "UTF-8") {
+
+Ésto sólo será necesario en algunas revisiones de SugarCRM 4.5.0.
+Ver bugs 9200 y 9502.

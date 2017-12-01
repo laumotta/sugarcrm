@@ -1,0 +1,5 @@
+[15-Aug-2011 11:45:57] PHP Warning:  implode() [<a href='function.implode'>function.implode</a>]: Invalid arguments passed in /home/lanmicro/public_html/sifeidistribuciones.com.mx/crm/cstm/FacModel.php on line 26
+[27-Sep-2011 19:32:19] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/lanmicro/public_html/sifeidistribuciones.com.mx/crm/cstm/oportunidad.php on line 12
+[27-Sep-2011 19:32:23] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/lanmicro/public_html/sifeidistribuciones.com.mx/crm/cstm/oportunidad.php on line 12
+[27-Sep-2011 19:32:25] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/lanmicro/public_html/sifeidistribuciones.com.mx/crm/cstm/oportunidad.php on line 12
+[27-Sep-2011 19:32:26] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/lanmicro/public_html/sifeidistribuciones.com.mx/crm/cstm/oportunidad.php on line 12

@@ -1,0 +1,58 @@
+<?php
+// created: 2012-10-05 17:46:14
+$dictionary["Opportunity"]["fields"]["opportunities_opportunities"] = array (
+  'name' => 'opportunities_opportunities',
+  'type' => 'link',
+  'relationship' => 'opportunities_opportunities',
+  'source' => 'non-db',
+  'vname' => 'LBL_OPPORTUNITIES_OPPORTUNITIES_FROM_OPPORTUNITIES_L_TITLE',
+);
+$dictionary["Opportunity"]["fields"]["opportunities_opportunities"] = array (
+  'name' => 'opportunities_opportunities',
+  'type' => 'link',
+  'relationship' => 'opportunities_opportunities',
+  'source' => 'non-db',
+  'vname' => 'LBL_OPPORTUNITIES_OPPORTUNITIES_FROM_OPPORTUNITIES_R_TITLE',
+);
+$dictionary["Opportunity"]["fields"]["opportunities_opportunities_name"] = array (
+  'name' => 'opportunities_opportunities_name',
+  'type' => 'relate',
+  'source' => 'non-db',
+  'vname' => 'LBL_OPPORTUNITIES_OPPORTUNITIES_FROM_OPPORTUNITIES_R_TITLE',
+  'save' => true,
+  'id_name' => 'opportunit2b09unities_ida',
+  'link' => 'opportunities_opportunities',
+  'table' => 'opportunities',
+  'module' => 'Opportunities',
+  'rname' => 'name',
+);
+$dictionary["Opportunity"]["fields"]["opportunities_opportunities_name"] = array (
+  'name' => 'opportunities_opportunities_name',
+  'type' => 'relate',
+  'source' => 'non-db',
+  'vname' => 'LBL_OPPORTUNITIES_OPPORTUNITIES_FROM_OPPORTUNITIES_L_TITLE',
+  'save' => true,
+  'id_name' => 'opportunit2b09unities_ida',
+  'link' => 'opportunities_opportunities',
+  'table' => 'opportunities',
+  'module' => 'Opportunities',
+  'rname' => 'name',
+);
+$dictionary["Opportunity"]["fields"]["opportunit2b09unities_ida"] = array (
+  'name' => 'opportunit2b09unities_ida',
+  'type' => 'link',
+  'relationship' => 'opportunities_opportunities',
+  'source' => 'non-db',
+  'reportable' => false,
+  'side' => 'left',
+  'vname' => 'LBL_OPPORTUNITIES_OPPORTUNITIES_FROM_OPPORTUNITIES_R_TITLE',
+);
+$dictionary["Opportunity"]["fields"]["opportunit2b09unities_ida"] = array (
+  'name' => 'opportunit2b09unities_ida',
+  'type' => 'link',
+  'relationship' => 'opportunities_opportunities',
+  'source' => 'non-db',
+  'reportable' => false,
+  'side' => 'left',
+  'vname' => 'LBL_OPPORTUNITIES_OPPORTUNITIES_FROM_OPPORTUNITIES_L_TITLE',
+);
