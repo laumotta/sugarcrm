@@ -1,5 +1,5 @@
 <?php
-// created: 2017-12-01 22:53:38
+// created: 2017-12-02 18:49:59
 $mod_strings = array (
   'LBL_TYPE_CUSTOMER' => 'Tipo de contribuyente',
   'LBL_RFC' => 'RFC',
@@ -94,5 +94,16 @@ $mod_strings = array (
   'LBL_SEND_CAMPAIGN' => 'Enviar campaña',
   'LBL_MARK_FOR_PROCESS' => 'Marcado para procesar',
   'LBL_REGIMEN_FISCAL' => 'regimen fiscal',
+  'LBL_FORMA_PAGO' => 'forma pago',
+  'LBL_DATE_ENTERED' => 'forma_pago',
+  'LBL_CREATED' => 'forma_pago',
+  'LBL_CONDICIONES_PAGO' => 'condiciones pago',
+  'LBL_DATE_MODIFIED' => 'condiciones_pago',
+  'LBL_MODIFIED_NAME' => 'condiciones_pago',
+  'LBL_NUM_REGISTRO_IDENTIDAD_FIS' => 'num registro_identidad_fis',
+  'LBL_ANNUAL_REVENUE' => 'num_registro_identidad_fiscal',
+  'LBL_NUMERO_CUENTA' => 'numero cuenta',
+  'LBL_PHONE_FAX' => 'numero_cuenta',
+  'LBL_FAX' => 'numero_cuenta',
 );
 ?>

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-08-28 12:21:48
+// created: 2017-12-02 20:27:31
 $mod_strings = array (
   'LBL_LIST_PRICE' => 'Precio de Lista ',
   'LBL_COMMISSION_CORP' => 'SIFEI (%)',
@@ -23,5 +23,9 @@ $mod_strings = array (
   'LBL_CAMPAIGN' => 'campaign',
   'LBL_REVISED' => 'Revisado',
   'LBL_MODIFY_QUANTITY' => 'Cantidad modificable',
+  'LBL_CLAVE_UNIDAD_ESTANDAR' => 'clave unidad_estandar',
+  'LBL_CREATED' => 'clave_unidad_estandar',
+  'LBL_UNIDAD_MEDIDA' => 'unidad medida',
+  'LBL_CLAVE_PRODUCTO' => 'clave producto',
 );
 ?>

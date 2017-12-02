@@ -319,7 +319,12 @@ READONLY>',
             'name' => 'created_by_name',
             'label' => 'LBL_CREATED',
           ),
-          1 => '',
+          1 => 
+          array (
+            'name' => 'clave_producto_c',
+            'studio' => 'visible',
+            'label' => 'LBL_CLAVE_PRODUCTO',
+          ),
         ),
       ),
       'LBL_PANEL_ASSIGNMENT' => 
@@ -332,7 +337,11 @@ READONLY>',
             'studio' => 'visible',
             'label' => 'LBL_CLAVEUNIDAD',
           ),
-          1 => '',
+          1 => 
+          array (
+            'name' => 'clave_c',
+            'label' => 'LBL_CLAVE',
+          ),
         ),
         1 => 
         array (

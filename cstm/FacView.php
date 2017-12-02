@@ -406,8 +406,8 @@
 
 						<TD><?php  echo number_format($impnto,3); ?></TD> <!--importe neto=cantidad * precio uni-->
 
-						<td>pedimento</td>	
-						<td>predial</td>
+						<td></td>	
+						<td></td>
 					</TD></TR>   
 					<?php    
 

@@ -168,6 +168,16 @@ array (
             'label' => 'LBL_CREATED',
           ),
         ),
+        13 => 
+        array (
+          0 => 
+          array (
+            'name' => 'clave_producto_c',
+            'studio' => 'visible',
+            'label' => 'LBL_CLAVE_PRODUCTO',
+          ),
+          1 => '',
+        ),
       ),
     ),
   ),

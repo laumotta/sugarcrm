@@ -302,6 +302,20 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_CLAVEUNIDAD',
           ),
+          1 => 
+          array (
+            'name' => 'clave_producto_c',
+            'studio' => 'visible',
+            'label' => 'LBL_CLAVE_PRODUCTO',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'clave_c',
+            'label' => 'LBL_CLAVE',
+          ),
           1 => '',
         ),
       ),

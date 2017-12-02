@@ -207,6 +207,35 @@ document.getElementById("btn_clr_assigned_user_name").disabled = true;
             'name' => 'description',
             'label' => 'LBL_DESCRIPTION',
           ),
+          1 => 
+          array (
+            'name' => 'annual_revenue',
+            'comment' => 'Annual revenue for this company',
+            'label' => 'LBL_ANNUAL_REVENUE',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'date_entered',
+            'comment' => 'Date record created',
+            'label' => 'LBL_DATE_ENTERED',
+          ),
+          1 => 
+          array (
+            'name' => 'date_modified',
+            'comment' => 'Date record last modified',
+            'label' => 'LBL_DATE_MODIFIED',
+          ),
+        ),
+        10 => 
+        array (
+          0 => 
+          array (
+            'name' => 'phone_fax',
+            'label' => 'LBL_PHONE_FAX',
+          ),
           1 => '',
         ),
       ),

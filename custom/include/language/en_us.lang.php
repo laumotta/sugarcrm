@@ -1133,3 +1133,27 @@ $GLOBALS['app_list_strings']['regimen_list']=array (
   '' => '',
   601 => 'General de Ley Personas Morales',
 );
+$GLOBALS['app_list_strings']['forma_pago_list']=array (
+  '' => '',
+  'efectivo' => '',
+);
+$GLOBALS['app_list_strings']['metodo']=array (
+  '' => '',
+  'PUE' => '',
+);
+$GLOBALS['app_list_strings']['clave_unidad_estandar_list']=array (
+  '' => '',
+  '01' => 'Acapulco, Acapulco de Juarez, Guerrero',
+);
+$GLOBALS['app_list_strings']['clave_producto_list']=array (
+  '' => '',
+);
+$GLOBALS['app_list_strings']['clave_producto_0']=array (
+  '' => '',
+);
+$GLOBALS['app_list_strings']['clave_producto_1']=array (
+  '' => '',
+);
+$GLOBALS['app_list_strings']['clave_producto_2']=array (
+  '' => '',
+);

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-10-07 11:00:15
+// created: 2017-12-02 20:36:16
 $mod_strings = array (
   'LBL_FOLIO_PACKAGE' => 'Paquetes de folios',
   'LBL_DEPLOYMENT' => 'deployment',
@@ -52,5 +52,10 @@ $mod_strings = array (
   'LBL_ES_REASIGNADA_C' => 'Es reasignada?',
   'LBL_MARK_FOR_PROCESS' => 'mark for_process',
   'LBL_DEPOSIT_DATE_C' => 'Fecha de deposito',
+  'LBL_CREATED' => 'clave_unidad',
+  'LBL_UNIDAD_MEDIDA' => 'unidad medida',
+  'LBL_CLAVEUNIDAD' => 'LBL_CLAVEUNIDAD',
+  'LBL_CLAVE_PRODUCTO' => 'clave producto',
+  'LBL_CLAVE' => 'clave',
 );
 ?>
