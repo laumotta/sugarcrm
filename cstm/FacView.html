@@ -5,7 +5,7 @@
 	<TITLE>Sugar CRM SIFEI</TITLE>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-	<link rel="stylesheet" type="text/css" href="../cache/themes/Sugar5/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../cache/themes/Sugar5/css/style.css" />
 	<link rel="SHORTCUT ICON" href="../themes/Sugar5/images/sugar_icon.ico">
 
 	<script type="text/javascript" src="../include/javascript/jquery.js"></script> 
@@ -112,7 +112,7 @@
 
 				<table id="detailpanel_4" cellspacing="2" width="">
 					<div id="LBL_ACCOUNT_INFORMATION" class="detail view">
-						<h4>EMISOR</h4></div>
+						<h4>EMISOR</h4>
 						<tr>
 							<td scope="row" width="" size="30">
 								RFC:
@@ -130,8 +130,7 @@
 								<span id="name">
 									<input type="text" name="nombre_rs"  id="nombre_rs" value="<?php echo $emi->name;?>" size="60"  class="required"   READONLY>
 								</span>
-							</td>
-						</tr>
+							</td></tr>
 
 							<tr>
 								<td scope="row" width="" size="30">
@@ -168,7 +167,7 @@
 
 						<?php 	$rec=$model->receptor($acc[0]->account_id); 
 
-							//echo print_r($rec,1);
+							echo print_r($rec,1);
 						?>
 
 						<table id="detailpanel_4" cellspacing="2">
@@ -218,7 +217,7 @@
 										Uso CFDI</td>
 										<td width="">
 											<select name="uso_cfdi" id="uso_cfdi">
-												<option label="" value="<?php echo $rec->uso_cfdi_c;?>"><?php echo $rec->uso_cfdi_c;?></option>
+												<option label="" value="">Selecciona una opcion...</option>
 												<option value="G02">Devoluciones, descuentos o bonificaciones</option>
 												<option value="G03">Gastos en general</option>
 												<option value="I01">Construcciones</option>
@@ -267,7 +266,7 @@
 										<td width="37.5%">
 											<input type="text" name="Trasladados"  id="Trasladados" value="0"  class="required" size="60" READONLY>
 										</td>
-									</tr></div></table>
+									</tr></select></td></tr></div></table>
 
 <table id="detailpanel_4" cellspacing="2">
 	<div id="LBL_PANEL_ASSIGNMENT" class="detail view">
@@ -318,7 +317,7 @@
 				Numero de Cuenta
 			</td>
 			<td width="">
-				<input type="text" name="no_cuenta" id="no_cuenta" size="60" value="<?php echo $rec->numero_cuenta_c; ?>" maxlength="30"  >
+				<input type="text" name="no_cuenta" id="no_cuenta" size="60" value="" maxlength="30"  >
 			</td>
 			<td scope="row" width="">
 			Desglose IEPS</td>
@@ -331,6 +330,7 @@
 			</td>
 		</tr>
 	</div>
+</tbody>
 </table> 
 
 
@@ -339,10 +339,10 @@
 	<div id="LBL_PANEL_ASSIGNMENT" class="detail view">
 		<h4>CFDIs Relacionados</h4>
 		<tr valign="top">
-			<th scope="row"></th>
+			<th scope="row"><label for="customFieldName">Custom Field</label></th>
 			<td>
-				<input type="text" class="code" name="customFieldName[]" value="" placeholder="Input Name" > &nbsp;
-				<input type="text" class="code" name="customFieldValue[]" value="" placeholder="Input Value" > &nbsp;
+				<input type="text" class="code" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp;
+				<input type="text" class="code" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp;
 				<a href="javascript:void(0);" id="addCF">Add</a>
 
 			</td>
@@ -370,14 +370,14 @@
 				</TR>
 			</THEAD>
 
-			<input name ="partidas"  type="hidden"  name="mass[]" id="mass[]" value="<?php echo $ops;?>"  class="required"  READONLY>
+			<input name ="partidas"  type="hidden"  name="mass[]" id="mass[]" value="<?php echo $ops;?>"  class="required"  READONLY></TD>
 			<?php 
 			$nopartida =1;
 			$Subtotal=0;
 			$descuento=0;
 			foreach($model->partidas($ops) as $partida)
 			{	
-				//echo print_r($partida,1);
+
 				$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
 				$cantidad =$partida->acquired_credits_c;
 				$unit =((($partida->amount)/(1-($partida->discount_c /100)))/1.16/$cantidad);
@@ -386,11 +386,11 @@
 				?>
 				<TR>
 					<TD><?php echo $cantidad ; ?> <!--cantidad-->
-						<td><?php echo $partida->claveunidad_c; ?></td> <!--clave unidad est-->
+						<td><?php echo $partida->clave_unidad_estandar_c; ?></td> <!--clave unidad est-->
 						<td><?php echo $partida->unidad_medida_c; ?></td> <!--unidad de media-->
-						<td><?php echo $partida->clave_producto_c; ?></td> <!--clve de prod/serv-->
-						<td><?php echo $partida->clave_c; ?></td> <!--num de identificacion fiscal-->
-						<TD> <?php echo $partida->name; ?></TD> <!--descripcion-->
+						<td><?php echo $partida->clave_producto_servicio; ?></td> <!--clve de prod/serv-->
+						<td><?php echo $partida->numero_ident; ?></td> <!--num de identificacion fiscal-->
+						<TD> <?php echo $partida->descrip; ?></TD> <!--descripcion-->
 
 						<TD><?php echo number_format($unit2,6);?></TD><!--precio unitario-->
 
@@ -399,8 +399,8 @@
 
 						<TD><?php  echo number_format($impnto,3); ?></TD> <!--importe neto=cantidad * precio uni-->
 
-						<td><?php echo $partida->pedimento_c; ?></td> <!--num de identificacion fiscal-->
-						<td><?php echo $partida->predial_c; ?></td> <!--num de identificacion fiscal-->
+						<td></td>	
+						<td></td>
 					</TD></TR>   
 					<?php    
 
@@ -409,6 +409,7 @@
 
 
 				}	?>
+			</TBODY>
 		</TABLE>
 	</div>
 </table>
@@ -436,7 +437,7 @@
 			$tipo_fact="TASA";
 			$tasa_cuo = 0.160000;
 
-			//declarar cada una de las variables anteriores por ejeplo $tipoglobal
+			<!-- declarar cada una de las variables anteriores por ejeplo $tipoglobal -->
 			$tipo_fact_global;
 			$importeglobal;
 			$globales= array();
@@ -460,13 +461,11 @@
 				$globales= array('tipo' => $tipo, 'impuesto' => $tipo_imp, 'factor' => $tipo_fact, 'cuota' => $tasa_cuo , 'importe' => $importeglobal);
 
 			}	?> 
-		</table>
-	</div>
-</table>
+		</tbody></table></div></table>
 
 
 		<table id="impuestos_globales" cellspacing="2">
-			<div id="Impuestos_Globales" class="detail view">
+			<div <id="Impuestos_Globales" class="detail view">
 				<h4>IMPUESTOS GLOBALES</h4></div>
 				<TABLE WIDTH="100%" ALIGN="rigth"   class="list view" border="1">
 					<input type="hidden" name="seccion" value="04-IMP_GLOB">
@@ -485,12 +484,10 @@
 						<td width="7.5%" id="tipo_imp"><?php  echo ($globales['impuesto']); ?></td>
 						<td width="7.5%" id="tipo_fact"><?php  echo ($globales['factor']); ?></td>
 						<td width="7.5%" id="tipo_fact"><?php  echo ($globales['cuota']); ?></td>
-						<td width="7.5%" id="importeglobal"><?php echo ($globales['importe']);?></td>
+						<td width="7.5%" id=·"importeglobal"><?php echo ($globales['importe']);?></td>
 					</tr>
 
-				</table>
-			</div>
-		</table>
+				</tbody></table></div></table>
 
 				<table id="detailpanel_4" cellspacing="2">
 					<div id="LBL_ACCOUNT_INFORMATION" class="detail view">
@@ -500,7 +497,7 @@
 							Forma de Pago</td>
 							<td >
 								<select name="forma_pago" id="forma_pago" title="" class="required"  >
-									<option label="" value="<?php echo $rec->forma_pago_c; ?>" selected><?php echo $rec->forma_pago_c; ?> </option>
+									<option label="" value="">Selecciona una opcion...</option>
 									<option label="Cheque nominativo" value="Cheque nominativo">Cheque Nominativo</option>
 									<option label="Efefctivo" value="Efectivo">Efectivo</option>
 									<option label="Transferencia electrónica de fondos" value="Transferencia electrónica de fondos">Transferencia electrónica de fondos</option>
@@ -530,7 +527,7 @@
 							<td scope="row" width="" size="30">
 							Condiciones de Pago</td>
 							<td width="37.5%">
-								<input name="Condiciones_pago" id="Condiciones" size="60"  maxlength="1000" value="<?php echo $rec->condiciones_pago_c;?>" title="">
+								<input name="Condiciones_pago" id="Condiciones" size="60"  maxlength="1000" value="Contado" title="">
 							</td>
 						</tr>
 						<tr>
@@ -545,7 +542,7 @@
 								% Descuento:
 							</td>
 							<td width="">
-								<input name="Descuento" id="Descuento" size="60"  maxlength="" value="<?php echo number_format($to_descuento,3); ?>" class="required" READONLY>
+								<input name="_Descuento" id="_Descuento" size="60"  maxlength="" value="<?php echo number_format($to_descuento,3); ?>" class="required" READONLY>
 							</td>
 						</tr>
 							<tr>
@@ -553,7 +550,7 @@
 									Moneda
 								</td>
 								<td width="" size="30">
-									<select name="Moneda" id="Moneda" title="" class="required"  >
+									<select name="Subtotal" id="Subtotal" title="" class="required"  >
 										<option value="MXN">Peso Mexicano</option>
 									</select>
 
@@ -589,22 +586,20 @@
 									</td>
 									<td width="">
 										<select name="tipo_comprobante" id="tipo_comprobante" title="" >
-											<option label="Egreso" value="E"></option>
+											<option value="E">Egreso</option>
 											<option value="I">Ingreso</option>
 											<option value="T">Traslado</option>
 											<option value="N">Nomina</option>
 											<option value="P">Pago</option>
 										</select>
 									</td>
-										
+
 									<td scope="row" width="" size="30">
 									Metodo de Pago</td>
 									<td width="">
-										<select name="tipo_comprobante" id="tipo_comprobante" title="" >
-											<option label="<?php echo $rec->metodo_pago_c;?>" value="E"></option>
-											<option label="Pago en una sola Exhibicion" value="PUE"></option>
-											<option label="Pago en parcialidades o diferido" value="PPD"></option>
-
+										<select name="metodo_pago" id="metodo_pago" title="" >
+											<option label="PUE" value="Pago en una Sola Exhibicion">PUE</option>
+											<option label="PPD" value="Pago en Parcialidades o Diferido">PPD</option>
 										</select>
 									</td>
 								</tr>
@@ -627,13 +622,14 @@
 
 							</table>
 							<table cellpadding="1" cellspacing="0" border="0"  class="actionsContainer">
-								<tr>
+								<tr><br>
 									<td class="buttons" align="left" NOWRAP>
 										<input class="submit" type="submit"   name="Facturar" id="Facturar"  value="Facturar" > 
 									</td>
 								</tr>
 							</table>
 						</form>
+					</div>
 				</div>
 			</BODY>
 		</HTML>

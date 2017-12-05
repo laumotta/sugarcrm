@@ -1129,10 +1129,6 @@ $GLOBALS['app_list_strings']['esquema_list']=array (
   'Comision' => 'Comisiones Heredadas',
   '' => '',
 );
-$GLOBALS['app_list_strings']['regimen_list']=array (
-  '' => '',
-  601 => 'General de Ley Personas Morales',
-);
 $GLOBALS['app_list_strings']['forma_pago_list']=array (
   '' => '',
   'efectivo' => '',
@@ -1145,9 +1141,6 @@ $GLOBALS['app_list_strings']['clave_unidad_estandar_list']=array (
   '' => '',
   '01' => 'Acapulco, Acapulco de Juarez, Guerrero',
 );
-$GLOBALS['app_list_strings']['clave_producto_list']=array (
-  '' => '',
-);
 $GLOBALS['app_list_strings']['clave_producto_0']=array (
   '' => '',
 );
@@ -1156,4 +1149,46 @@ $GLOBALS['app_list_strings']['clave_producto_1']=array (
 );
 $GLOBALS['app_list_strings']['clave_producto_2']=array (
   '' => '',
+);
+$GLOBALS['app_list_strings']['forma_pago_0']=array (
+  '' => '',
+  '01' => 'Cheque Nominativo',
+  '02' => 'Efectivo',
+  '03' => 'Transferencia Electronica de Fondos',
+);
+$GLOBALS['app_list_strings']['forma_pago_c_list']=array (
+  '' => '',
+  '01' => 'Efectivo',
+  '02' => 'Cheque Nominativo',
+  '03' => 'Transferencia Electronica de Fondos',
+);
+$GLOBALS['app_list_strings']['clave_producto_c_list']=array (
+  '' => '',
+);
+$GLOBALS['app_list_strings']['clave_unidad_estandar_0']=array (
+  '' => '',
+);
+$GLOBALS['app_list_strings']['regimen_list']=array (
+  '' => '',
+  601 => 'General de Ley Personas Morales',
+  606 => 'Arrendamiento',
+);
+$GLOBALS['app_list_strings']['claveunidad_c_list']=array (
+  '' => '',
+  'E48' => 'Unidad de servicio',
+);
+$GLOBALS['app_list_strings']['clave_producto_list']=array (
+  '' => '',
+  80111608 => 'Desarrolladores temporales de software de tecnologías de la información',
+  80111609 => 'Administradores temporales de bases de datos o de sistemas de tecnologías de la información',
+);
+
+$GLOBALS['app_list_strings']['metodo_pago_list']=array (
+  'PUE' => 'Pago en una solo exhibición',
+  'PPD' => 'Pago en parcialidades o diferido',
+  '' => '',
+);
+$GLOBALS['app_list_strings']['uso_cfdi_list']=array (
+  '' => '',
+  'G03' => 'Gastos en general',
 );

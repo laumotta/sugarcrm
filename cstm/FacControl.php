@@ -13,7 +13,7 @@ header("Content-Length:".filesize($file));
 readfile($file);exit;}
 
 if(isset($_GET["op"])){
- $ops = $model->opportunidades($_GET["op"]);
+$ops = $model->opportunidades($_GET["op"]);
 $acc = $model->val($ops);
 // 
 if ($acc[0]->num == 1 and $acc[1]->num_fac == 0){

@@ -212,11 +212,6 @@ READONLY>',
         ),
         5 => 
         array (
-          0 => '',
-          1 => '',
-        ),
-        6 => 
-        array (
           0 => 
           array (
             'name' => 'discount_c',
@@ -232,7 +227,7 @@ READONLY>',
             'label' => 'LBL_PAYMENT_METHOD',
           ),
         ),
-        7 => 
+        6 => 
         array (
           0 => 
           array (
@@ -246,7 +241,7 @@ READONLY>',
             'label' => 'LBL_CSTM_CONTRACTS_OPPORTUNITIES_FROM_CSTM_CONTRACTS_TITLE',
           ),
         ),
-        8 => 
+        7 => 
         array (
           0 => 
           array (
@@ -260,7 +255,7 @@ READONLY>',
             'label' => 'LBL_TICKET_OTRS',
           ),
         ),
-        9 => 
+        8 => 
         array (
           0 => 
           array (
@@ -274,7 +269,7 @@ READONLY>',
             'label' => 'LBL_DEMO',
           ),
         ),
-        10 => 
+        9 => 
         array (
           0 => 
           array (
@@ -287,7 +282,7 @@ READONLY>',
             'label' => 'LBL_REASON_LOSS_SALE',
           ),
         ),
-        11 => 
+        10 => 
         array (
           0 => 
           array (
@@ -299,7 +294,7 @@ READONLY>',
             'label' => 'LBL_CSTM_QUOTES_OPPORTUNITIES_FROM_CSTM_QUOTES_TITLE',
           ),
         ),
-        12 => 
+        11 => 
         array (
           0 => 
           array (
@@ -312,14 +307,13 @@ READONLY>',
             'label' => 'LBL_LLAMADAS_NO_CONTESTADAS',
           ),
         ),
-        13 => 
+        12 => 
         array (
           0 => 
           array (
             'name' => 'created_by_name',
             'label' => 'LBL_CREATED',
           ),
-          1 => '',
         ),
       ),
       'LBL_PANEL_ASSIGNMENT' => 
@@ -332,9 +326,27 @@ READONLY>',
             'studio' => 'visible',
             'label' => 'LBL_CLAVEUNIDAD',
           ),
-          1 => '',
+          1 => 
+          array (
+            'name' => 'clave_producto_c',
+            'studio' => 'visible',
+            'label' => 'LBL_CLAVE_PRODUCTO',
+          ),
         ),
         1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'unidad_medida_c',
+            'label' => 'LBL_UNIDAD_MEDIDA',
+          ),
+          1 => 
+          array (
+            'name' => 'clave_c',
+            'label' => 'LBL_CLAVE',
+          ),
+        ),
+        2 => 
         array (
           0 => 
           array (
@@ -349,7 +361,7 @@ READONLY>',
             'label' => 'LBL_LEAD_SOURCE',
           ),
         ),
-        2 => 
+        3 => 
         array (
           0 => 
           array (
@@ -363,7 +375,7 @@ READONLY>',
             'label' => 'LBL_CAMPAIGN',
           ),
         ),
-        3 => 
+        4 => 
         array (
           0 => 
           array (
@@ -372,7 +384,7 @@ READONLY>',
             'label' => 'LBL_PROBABILITY',
           ),
         ),
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -391,7 +403,7 @@ name="{$fields.cstm_commi141cissions_ida.name}"/>
 ',
           ),
         ),
-        5 => 
+        6 => 
         array (
           0 => 
           array (

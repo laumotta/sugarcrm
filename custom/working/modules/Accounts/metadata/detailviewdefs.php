@@ -62,8 +62,22 @@ type="button">',
               ),
             ),
           ),
+          1 => 
+          array (
+            'name' => 'rfc_c',
+            'label' => 'LBL_RFC',
+          ),
         ),
         1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'assigned_user_name',
+            'label' => 'LBL_ASSIGNED_TO',
+          ),
+          1 => '',
+        ),
+        2 => 
         array (
           0 => 
           array (
@@ -78,7 +92,7 @@ type="button">',
             'label' => 'LBL_TYPE',
           ),
         ),
-        2 => 
+        3 => 
         array (
           0 => 
           array (
@@ -88,30 +102,31 @@ type="button">',
           ),
           1 => 
           array (
-            'name' => 'rfc_c',
-            'label' => 'LBL_RFC',
-          ),
-        ),
-        3 => 
-        array (
-          0 => 
-          array (
-            'name' => 'owner_c',
+            'name' => 'consumption_level_c',
             'studio' => 'visible',
-            'label' => 'LBL_OWNER',
-          ),
-          1 => 
-          array (
-            'name' => 'schema_register_c',
-            'label' => 'LBL_SCHEMA_REGISTER',
+            'label' => 'LBL_CONSUMPTION_LEVEL',
           ),
         ),
         4 => 
         array (
           0 => 
           array (
-            'name' => 'activity_c',
-            'label' => 'LBL_ACTIVITY',
+            'name' => 'parent_name',
+            'label' => 'LBL_MEMBER_OF',
+          ),
+          1 => 
+          array (
+            'name' => 'proxima_recarga_c',
+            'label' => 'LBL_PROXIMA_RECARGA',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'support_c',
+            'studio' => 'visible',
+            'label' => 'LBL_SUPPORT',
           ),
           1 => 
           array (
@@ -120,13 +135,12 @@ type="button">',
             'label' => 'LBL_PHONE_OFFICE',
           ),
         ),
-        5 => 
+        6 => 
         array (
           0 => 
           array (
-            'name' => 'billing_scheme_c',
-            'studio' => 'visible',
-            'label' => 'LBL_BILLING_SCHEME',
+            'name' => 'events_support_c',
+            'label' => 'LBL_EVENTS_SUPPORT',
           ),
           1 => 
           array (
@@ -135,13 +149,27 @@ type="button">',
             'label' => 'LBL_PHONE_ALT',
           ),
         ),
-        6 => 
+        7 => 
         array (
           0 => 
           array (
-            'name' => 'industry',
-            'comment' => 'The company belongs in this industry',
-            'label' => 'LBL_INDUSTRY',
+            'name' => 'support_effect_until_c',
+            'label' => 'LBL_SUPPORT_EFFECT_UNTIL',
+          ),
+          1 => 
+          array (
+            'name' => 'email1',
+            'studio' => 'false',
+            'label' => 'LBL_EMAIL',
+          ),
+        ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'support_status_c',
+            'studio' => 'visible',
+            'label' => 'LBL_SUPPORT_STATUS',
           ),
           1 => 
           array (
@@ -150,54 +178,48 @@ type="button">',
             'label' => 'LBL_ACCOUNT_CATEGORY',
           ),
         ),
-        7 => 
+        9 => 
         array (
           0 => 
           array (
-            'name' => 'docs_attached_c',
+            'name' => 'resguardo_c',
             'studio' => 'visible',
-            'label' => 'LBL_DOCS_ATTACHED',
+            'label' => 'LBL_RESGUARDO',
           ),
           1 => 
+          array (
+            'name' => 'resguardo_hasta_c',
+            'label' => 'LBL_RESGUARDO_HASTA',
+          ),
+        ),
+        10 => 
+        array (
+          0 => 
+          array (
+            'name' => 'almacen_hasta_c',
+            'label' => 'LBL_ALMACEN_HASTA',
+          ),
+          1 => 
+          array (
+            'name' => 'aci_hasta_c',
+            'label' => 'LBL_ACI_HASTA',
+          ),
+        ),
+        11 => 
+        array (
+          0 => 
           array (
             'name' => 'documents_c',
             'studio' => 'visible',
             'label' => 'LBL_DOCUMENTS',
           ),
-        ),
-        8 => 
-        array (
-          0 => 
-          array (
-            'name' => 'email1',
-            'studio' => 'false',
-            'label' => 'LBL_EMAIL',
-          ),
           1 => 
           array (
-            'name' => 'website',
-            'type' => 'link',
-            'label' => 'LBL_WEBSITE',
-            'displayParams' => 
-            array (
-              'link_target' => '_blank',
-            ),
+            'name' => 'funcionalidad_basica_c',
+            'label' => 'LBL_FUNCIONALIDAD_BASICA',
           ),
         ),
-        9 => 
-        array (
-          0 => 
-          array (
-            'name' => 'created_by_name',
-            'label' => 'LBL_CREATED',
-          ),
-          1 => 
-          array (
-            'name' => 'modified_by_name',
-            'label' => 'LBL_MODIFIED_NAME',
-          ),
-        ),
-        10 => 
+        12 => 
         array (
           0 => 
           array (
@@ -205,20 +227,39 @@ type="button">',
             'comment' => 'Full text of the note',
             'label' => 'LBL_DESCRIPTION',
           ),
+          1 => 
+          array (
+            'name' => 'promocion_c',
+            'label' => 'LBL_PROMOCION',
+          ),
         ),
-        11 => 
+        13 => 
         array (
           0 => 
+          array (
+            'name' => 'servicios_c',
+            'studio' => 'visible',
+            'label' => 'LBL_SERVICIOS_C',
+          ),
+          1 => 
+          array (
+            'name' => 'created_by_name',
+            'label' => 'LBL_CREATED',
+          ),
+        ),
+        14 => 
+        array (
+          0 => 
+          array (
+            'name' => 'type_service_c',
+            'studio' => 'visible',
+            'label' => 'LBL_TYPE_SERVICE',
+          ),
+          1 => 
           array (
             'name' => 'annual_revenue',
             'comment' => 'Annual revenue for this company',
             'label' => 'LBL_ANNUAL_REVENUE',
-          ),
-          1 => 
-          array (
-            'name' => 'phone_fax',
-            'comment' => 'The fax phone number of this company',
-            'label' => 'LBL_FAX',
           ),
         ),
       ),
@@ -318,33 +359,37 @@ type="button">',
             'name' => 'billing_address_town_c',
             'label' => 'LBL_BILLING_ADDRESS_TOWN',
           ),
-          1 => '',
-        ),
-        2 => 
-        array (
-          0 => 
+          1 => 
           array (
             'name' => 'billing_address_ou_c',
             'label' => 'LBL_BILLING_ADDRESS_OU',
           ),
-          1 => '',
         ),
-        3 => 
+        2 => 
         array (
           0 => 
           array (
             'name' => 'billing_address_in_c',
             'label' => 'LBL_BILLING_ADDRESS_IN',
           ),
-          1 => '',
-        ),
-        4 => 
-        array (
-          0 => 
+          1 => 
           array (
             'name' => 'billing_address_colonia_c',
             'label' => 'LBL_BILLING_ADDRESS_COLONIA',
           ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'customer_id_c',
+            'label' => 'LBL_CUSTOMER_ID',
+          ),
+          1 => '',
+        ),
+        4 => 
+        array (
+          0 => '',
           1 => '',
         ),
       ),
@@ -354,24 +399,19 @@ type="button">',
         array (
           0 => 
           array (
-            'name' => 'parent_name',
-            'label' => 'LBL_MEMBER_OF',
-          ),
-          1 => 
-          array (
             'name' => 'campaign_name',
             'comment' => 'The first campaign name for Account (Meta-data only)',
             'label' => 'LBL_CAMPAIGN',
+          ),
+          1 => 
+          array (
+            'name' => 'schema_register_c',
+            'label' => 'LBL_SCHEMA_REGISTER',
           ),
         ),
         1 => 
         array (
           0 => 
-          array (
-            'name' => 'assigned_user_name',
-            'label' => 'LBL_ASSIGNED_TO',
-          ),
-          1 => 
           array (
             'name' => 'date_modified',
             'label' => 'LBL_DATE_MODIFIED',
@@ -396,9 +436,9 @@ type="button">',
         array (
           0 => 
           array (
-            'name' => 'type_service_c',
-            'studio' => 'visible',
-            'label' => 'LBL_TYPE_SERVICE',
+            'name' => 'billing_address_city',
+            'comment' => 'The city used for billing address',
+            'label' => 'LBL_BILLING_ADDRESS_CITY',
           ),
           1 => 
           array (

@@ -140,7 +140,12 @@ document.getElementById("btn_clr_assigned_user_name").disabled = true;
             'name' => 'phone_office',
             'label' => 'LBL_PHONE_OFFICE',
           ),
-          1 => '',
+          1 => 
+          array (
+            'name' => 'regimen_fiscal_c',
+            'studio' => 'visible',
+            'label' => 'LBL_REGIMEN_FISCAL',
+          ),
         ),
         4 => 
         array (
@@ -210,9 +215,89 @@ document.getElementById("btn_clr_assigned_user_name").disabled = true;
           ),
           1 => 
           array (
-            'name' => 'promocion_c',
-            'label' => 'LBL_PROMOCION',
+            'name' => 'annual_revenue',
+            'comment' => 'Annual revenue for this company',
+            'label' => 'LBL_ANNUAL_REVENUE',
           ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'created_by_name',
+            'label' => 'LBL_CREATED',
+          ),
+          1 => 
+          array (
+            'name' => 'date_modified',
+            'comment' => 'Date record last modified',
+            'label' => 'LBL_DATE_MODIFIED',
+          ),
+        ),
+        10 => 
+        array (
+          0 => 
+          array (
+            'name' => 'date_entered',
+            'comment' => 'Date record created',
+            'label' => 'LBL_DATE_ENTERED',
+          ),
+          1 => 
+          array (
+            'name' => 'modified_by_name',
+            'label' => 'LBL_MODIFIED_NAME',
+          ),
+        ),
+        11 => 
+        array (
+          0 => 
+          array (
+            'name' => 'phone_fax',
+            'label' => 'LBL_PHONE_FAX',
+          ),
+          1 => 
+          array (
+            'name' => 'numero_cuenta_c',
+            'label' => 'LBL_NUMERO_CUENTA',
+          ),
+        ),
+        12 => 
+        array (
+          0 => 
+          array (
+            'name' => 'num_registro_identidad_fis_c',
+            'label' => 'LBL_NUM_REGISTRO_IDENTIDAD_FIS',
+          ),
+          1 => 
+          array (
+            'name' => 'condiciones_pago_c',
+            'label' => 'LBL_CONDICIONES_PAGO',
+          ),
+        ),
+        13 => 
+        array (
+          0 => 
+          array (
+            'name' => 'forma_pago_c',
+            'studio' => 'visible',
+            'label' => 'LBL_FORMA_PAGO',
+          ),
+          1 => 
+          array (
+            'name' => 'metodo_pago_c',
+            'studio' => 'visible',
+            'label' => 'LBL_METODO_PAGO',
+          ),
+        ),
+        14 => 
+        array (
+          0 => 
+          array (
+            'name' => 'uso_cfdi_c',
+            'studio' => 'visible',
+            'label' => 'LBL_USO_CFDI',
+          ),
+          1 => '',
         ),
       ),
       'lbl_editview_panel1' => 
