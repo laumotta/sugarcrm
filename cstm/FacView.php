@@ -1,7 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HTML>
 <HEAD>
+<?php 
 
+session_start();
+
+?>
 	<TITLE>Sugar CRM SIFEI</TITLE>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -101,7 +105,7 @@
 			</div>
  
 
-			<form action="?layout=true" method="post"  name="EditView" id="EditView"   >
+			<form action="?layout=true" method="POST"  name="EditView" id="EditView"   >
 
 				<input type="hidden" name="tipo_CFD" value="FA">
 				<input type="hidden" name="version" value="3.3">
@@ -208,8 +212,7 @@
 											No. de Registro de Identidad Fiscal:
 										</td>
 										<td width="">		
-				<input type="text" name="num_registro_identidad_fis_c" id="num_registro_identidad_fis_c" size="60" 
-				value="<?php echo $rec->num_registro_identidad_fis_c;?>">
+										<input type="text" name="num_registro_identidad_fis_c" id="num_registro_identidad_fis_c" size="60" value="<?php echo $rec->num_registro_identidad_fis_c;?>">
 										</td>
 									</tr>
 
@@ -391,14 +394,9 @@
 						<td><?php echo $partida->clave_producto_c; ?></td> <!--clve de prod/serv-->
 						<td><?php echo $partida->clave_c; ?></td> <!--num de identificacion fiscal-->
 						<TD> <?php echo $partida->name; ?></TD> <!--descripcion-->
-
 						<TD><?php echo number_format($unit2,6);?></TD><!--precio unitario-->
-
 						<TD><?php  $desc =($impnto*$partida->discount_c )/100; echo $desc; ?></TD><!-- descuento -->
-
-
 						<TD><?php  echo number_format($impnto,3); ?></TD> <!--importe neto=cantidad * precio uni-->
-
 						<td><?php echo $partida->pedimento_c; ?></td> <!--num de identificacion fiscal-->
 						<td><?php echo $partida->predial_c; ?></td> <!--num de identificacion fiscal-->
 					</TD></TR>   
@@ -440,14 +438,17 @@
 			$tipo_fact_global;
 			$importeglobal;
 			$globales= array();
+			$myarray  = array();
+			$cadena ;
+			$index = 0;
 			foreach($model->partidas($ops) as $partida)
 			{	
 				$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
 				$desc =($impnto*$partida->discount_c )/100;
-
+			
 				?>
 				<tr>
-					<td width="5%" id="tipo" value=""><?php echo $tipo->discount_c; echo ($tipo);?></td>
+					<td width="5%" id="tipo" value=""><?php  echo $tipo;?></td>
 					<td width="5%" id="base"><?php $base=($impnto-$desc); echo $base;?></td><!--Base=importeneto -descuento -->
 					<td width="5%" id="tipo_imp"><?php echo ($tipo_imp); ?></td>
 					<td width="5%" id="tipo_fact"><?php echo ($tipo_fact); ?></td>
@@ -459,10 +460,50 @@
 				$importeglobal=$importeglobal+$tot;
 				$globales= array('tipo' => $tipo, 'impuesto' => $tipo_imp, 'factor' => $tipo_fact, 'cuota' => $tasa_cuo , 'importe' => $importeglobal);
 
+				$mydata= array('tipo' => $tipo, 'impuesto' => $tipo_imp, 'factor' => $tipo_fact, 'cuota' => $tasa_cuo , 'importe' => $tot);
+
+				array_push($myarray,$mydata);
+				
+					$imp_ .='03-IMP'; 
+					$imp_ .= "|";
+					$imp_ .=$tipo;
+					$imp_ .= "|";
+					$imp_ .=$base;
+					$imp_ .= "|";
+					$imp_ .=$tipo_imp;
+					$imp_ .= "|";
+					$imp_ .=$tipo_fact;
+					$imp_ .= "|";
+					$imp_ .=$tasa_cuo;
+					$imp_ .= "|";
+					$imp_ .=$tot;
+					$imp_ .=PHP_EOL;
+					$index ++;
+
+					// $arreglo_global[$impuesto]['tipo'] =  $tipo;
+					// $arreglo_global[$impuesto]['impuesto'] =  $tipo_imp;
+					// $arreglo_global[$impuesto]['factor'] =  $tipo_fact;
+					// $arreglo_global[$impuesto]['cuota'] =  $tasa_cuo ;
+					// $arreglo_global[$impuesto]['importe'] =  $tot;
+
 			}	?> 
+
 		</table>
 	</div>
 </table>
+<?php  //print_r($myarray); 
+
+//$_SESSION['04-IMP_GLOB'] = $myarray;
+
+//$arreglo_s = serialize($myarray);
+//$array_encode = htmlentities($arreglo_s);
+
+//echo '<input  name="myarray[]"  type="hidden"  value="'.$myarray.'">';
+
+?>
+		<input type="hidden" class="code" name="03-IMP" value="<?php print_r($myarray) ;?>" > &nbsp;
+
+		<input type="hidden" class="code" name="imp_" value="<?php echo($imp_) ;?>" > &nbsp;
 
 
 		<table id="impuestos_globales" cellspacing="2">
@@ -482,15 +523,20 @@
 
 					<tr> <!-- se imprime el array con los datos globales de la tabla anterior -->
 						<td width="7.5%" id="tipo" value=""> <?php  echo ($globales['tipo']); ?></td>
-						<td width="7.5%" id="tipo_imp"><?php  echo ($globales['impuesto']); ?></td>
-						<td width="7.5%" id="tipo_fact"><?php  echo ($globales['factor']); ?></td>
-						<td width="7.5%" id="tipo_fact"><?php  echo ($globales['cuota']); ?></td>
-						<td width="7.5%" id="importeglobal"><?php echo ($globales['importe']);?></td>
+						<td width="7.5%" id="impuesto"><?php  echo ($globales['impuesto']); ?></td>
+						<td width="7.5%" id="factor"><?php  echo ($globales['factor']); ?></td>
+						<td width="7.5%" id="cuota"><?php  echo ($globales['cuota']); ?></td>
+						<td width="7.5%" id="importe"><?php echo ($globales['importe']);?></td>
 					</tr>
 
 				</table>
 			</div>
 		</table>
+<input type="hidden"  name="globales_tipo" id="globales_tipo" value="<?php echo $globales['tipo'];?>"  class="required"  READONLY>
+<input type="hidden"  name="globales_impuesto" id="globales_impuesto" value="<?php  echo $globales['impuesto'];?>"  class="required"  READONLY>
+<input type="hidden"  name="globales_factor" id="globales_factor" value="<?php  echo $globales['factor'];?>"  class="required"  READONLY>
+<input type="hidden"  name="globales_cuota" id="globales_cuota" value="<?php  echo $globales['cuota'];?>"  class="required"  READONLY>
+<input type="hidden"  name="globales_importe" id="globales_importe" value="<?php  echo $globales['importe'];?>"  class="required"  READONLY>
 
 				<table id="detailpanel_4" cellspacing="2">
 					<div id="LBL_ACCOUNT_INFORMATION" class="detail view">

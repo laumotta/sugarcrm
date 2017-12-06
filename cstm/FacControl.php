@@ -24,6 +24,15 @@ die();
 }
 }
 if (isset($_GET['layout'])=="true") {
-$datos = $model->layout($_POST);
+	// $mydata = unserialize(stripslashes($_POST['mydata']));
+	// echo "PRUEBA <br>";
+    //echo print_r($_POST);
+ 	//    var_dump($mydata);
+	// //echo "dos " .print_r($_POST['arreglo_global']);
+	// // foreach ($arreglo_imp as $key => $value) {
+	// // 	echo  $value;
+	// // }
+	//exit();
+	$datos = $model->layout($_POST);
 }
 ?>
