@@ -218,7 +218,7 @@
 										Uso CFDI</td>
 										<td width="">
 											<select name="uso_cfdi" id="uso_cfdi">
-												<option label="" value="<?php echo $rec->uso_cfdi_c;?>"><?php echo $rec->uso_cfdi_c;?></option>
+												<option label="<?php echo $rec->uso_cfdi_c;?>" value="<?php echo $rec->uso_cfdi_c;?>" selected></option>
 												<option value="G02">Devoluciones, descuentos o bonificaciones</option>
 												<option value="G03">Gastos en general</option>
 												<option value="I01">Construcciones</option>
@@ -278,7 +278,7 @@
 				Motivo de descuento
 			</td>
 			<td width="">
-				<input type="text" name="m_descuento" id="m_descuento" value="" size="60" >
+				<input type="text" name="m_descuento" id="m_descuento" value="m_descuento" size="60" >
 			</td>
 
 			<td scope="row" width="" size="30">
@@ -324,9 +324,9 @@
 			Desglose IEPS</td>
 			<td width="">
 				<select name="Desglose" id="Desglose" title="">
-					<option label="" value="">Selecciona una opcion...</option>
+					
 					<option value="S">S</option>
-					<option value="N">N</option>
+					<option value="N" selected="select">N</option>
 				</select>
 			</td>
 		</tr>
@@ -600,8 +600,8 @@
 									<td scope="row" width="" size="30">
 									Metodo de Pago</td>
 									<td width="">
-										<select name="tipo_comprobante" id="tipo_comprobante" title="" >
-											<option label="<?php echo $rec->metodo_pago_c;?>" value="E"></option>
+										<select name="metodo_pago" id="metodo_pago" title="" >
+											<option label="<?php echo $rec->metodo_pago_c;?>" value="<?php echo $rec->metodo_pago_c;?>"></option>
 											<option label="Pago en una sola Exhibicion" value="PUE"></option>
 											<option label="Pago en parcialidades o diferido" value="PPD"></option>
 
@@ -621,7 +621,7 @@
 										Confirmacion
 									</td>
 									<td width="37.5%">
-										<input type="text" name="" id="" size="60" value="" maxlength="5"  >
+										<input type="text" name="Confirmacion" id="Confirmacion" size="60" value="Confirmacion" maxlength=""  >
 									</td>
 								</tr>
 

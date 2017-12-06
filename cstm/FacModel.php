@@ -39,6 +39,7 @@ deleted=0;",$ops);
 			$opps=$this->db->loadObject();
 			error_log('RESULTADO'. print_r($accounts_opps,1). ' resultado ' .print_r($opps,1));
 			return array(0=>$accounts_opps,1=>$opps);
+
 			
 		}
 		
@@ -134,7 +135,7 @@ deleted=0;",$ops);
 			"|" .
 			$array['rep_red_fis'] .
 			"|" .
-			$array['nrif'] .
+			$array['num_registro_identidad_fis_c'] .
 			"|" .
 			$array['uso_cfdi'] .
 			"|" .
@@ -157,8 +158,240 @@ deleted=0;",$ops);
 			$array['no_cuenta'] .
 			"|" .
 			$array['Desglose'] .
-
+			PHP_EOL;
 			
+			$opp_no =1;
+			$cantidad =1;
+			 
+			$opp = stripslashes($array['partidas']);
+ 				
+				foreach($this->partidas($opp) as $ops)
+				{			$this->actualiza_oportunidad($id,$ops->id);					
+							$cadena_ .= "03";
+							$cadena_ .= "|";
+							$cadena_ .=$opp_no ++; //Numero de seccion
+							$cadena_ .= "|";
+							$cadena_ .=$ops->acquired_credits_c; // Cantidad facturada.
+							$cadena_ .= "|";
+							$cadena_ .=$ops->clave_unidad_estandar_c; 
+							$cadena_ .= "|";
+							$cadena_ .=$ops->unidadmedida_c;    // Unidad de medida
+							$cadena_ .= "|";
+							$cadena_ .=$ops->clave_producto_servicio; 
+							$cadena_ .= "|";
+							$cadena_ .=$ops->num_registro_identidad_fis_c; 
+							$cadena_ .= "|";
+							$cadena_ .=$ops->descrip; // descripcion
+							$cadena_ .= "|";
+							$cadena_ .=number_format((($unit =(($ops->amount)/(1-($ops->discount_c /100)))/1.16)/$ops->acquired_credits_c),6); //precio unit
+							$cadena_ .= "|";
+							$cadena_ .=$ops->desc; // descuento
+							$cadena_ .= "|";
+							$cadena_ .=number_format(($imp = $unit * $cantidad),3); //importe neto
+							$cadena_ .= "|";
+							$cadena_ .="";  //no pedimento
+							$cadena_ .= "|";
+							$cadena_ .="";  //no predial
+							$cadena_ .=PHP_EOL;						
+
+							}
+
+				foreach($this->partidas($opp) as $ops)
+					{
+							$cadena_ .= "|";
+							$cadena_ .= "PARTIDAS IMPUESTOS";
+							$cadena_ .= "|";
+							$cadena_ .=$opp_no ++; //Numero de seccion
+							$cadena_ .= "|";
+							$cadena_ .=$ops->tipo; 
+							$cadena_ .= "|";
+							$cadena_ .=$ops->base;
+							$cadena_ .= "|";
+							$cadena_ .=$ops->tipo_imp;
+							$cadena_ .= "|";
+							$cadena_ .=$ops->tipo_fact;
+							$cadena_ .= "|";
+							$cadena_ .=$ops->tasa_cuo;
+							$cadena_ .= "|";
+							$cadena_ .=$ops->importe;
+							$cadena_ .=PHP_EOL;
+					}
+							
+
+						foreach($this->globales($opp) as $ops)
+						{			
+							$cadena_ .= "|";
+							$cadena_ .= "04";
+							$cadena_ .= "|";
+							$cadena_ .=$opp_no ++; //Numero de seccion
+							$cadena_ .= "|";
+							$cadena_ .=$ops->tipo;
+							$cadena_ .= "|";
+							$cadena_ .=$ops->impuesto;
+							$cadena_ .= "|";
+							$cadena_ .=$ops->factor;
+							$cadena_ .= "|";
+							$cadena_ .=$ops->cuota;
+							$cadena_ .= "|";
+							$cadena_ .=$ops->importe;
+							$cadena_ .= "|";
+
+							$cadena_ .=PHP_EOL;
+
+						}
+
+
+			file_put_contents("layout/".utf8_encode($link),$cadena.$cadena_);
+			// echo "termino";
+ 	 
+			header('Location: ../index.php?module=cstm_invoices&action=DetailView&record='.$id);
+		}
+
+
+		public function layout2($array){
+			$id=create_guid();
+			$link= $id.".txt";
+			$assig =$array['asignado'];
+ 			$fac=$this->inserta_registro($id,$assig,$array['account']);
+			$cadena =
+			"01" .
+			"|" .  
+			$array['comprobante'] .
+			"|" .
+			$array['version'] .
+			"|" .
+			$array['serie'] .
+			"|" .
+			$fac->folio_c .
+			"|" .
+			$array['forma'] .
+			"|" .
+			$array['Certificado'] .
+			"|" .
+			$array['Condiciones'] .
+			"|" .
+			$array['subtotal'] .
+			"|" .
+			number_format($array['_Descuento'],6) .
+			"|" .
+			$array['m_descuento'] .
+			"|" .
+			$array['total'] .
+			"|" .
+			$array['Pago'] .
+			"|" .
+			$array['tipo_comprobante'] .
+			"|" .
+			$array['Moneda'] .
+			"|" .
+			$array['Cambio'] .
+			"|" .
+			"EMISOR".
+			"|" .
+			$array['RFC'] .
+			"|" .
+			$array['name'] .
+			"|" .
+			"DOMICILIO FISCAL".
+			"|" .
+			$array['billing_address_street'] .
+			"|" .
+			$array['billing_address_ou_c'] .
+			"|" .
+			$array['billing_address_in_c'] .
+			"|" .
+			$array['billing_address_colonia_c'] .
+			"|" .
+			$array['billing_address_city'] .
+			"|" .
+			"" .
+			"|" .
+			$array['billing_address_town_c'] .
+			"|" .
+			$array['billing_address_state'] .
+			"|" .
+			$array['billing_address_country'] .
+			"|" .
+			$array['billing_address_postalcode'] .
+			"|" .
+			"EXPEDIDOEN" .
+			"|" .
+			"".
+			"|" .
+			"".
+			"|" .
+			"".
+			"|" .
+			"".
+			"|" .
+			"" .
+			"|" .
+			"".
+			"|" .
+			"" .
+			"|" .
+			"" .
+			"|" .
+			"" .
+			"|" .
+			"" .
+			"|" .
+			"RECEPTOR" .
+			"|" .
+			$array['rep_RFC'] .
+			"|" .
+			$array['rep_name'] .
+			"|" .
+			"DOMICILIO FISCAL_R" .
+			"|" .
+			$array['rep_billing_address_street'] .
+			"|" .
+			$array['rep_billing_address_ou_c'] .
+			"|" .
+			$array['rep_billing_address_in_c'] .
+			"|" .
+			$array['rep_billing_address_colonia_c'] .
+			"|" .
+			$array['rep_billing_address_city'] .
+			"|" .
+			" " .
+			"|" .
+			$array['rep_billing_address_town_c'] .
+			"|" .
+			$array['rep_billing_address_state'] .
+			"|" .
+			$array['rep_billing_address_country'] .
+			"|" .
+			$array['rep_billing_address_postalcode'] .
+			"|" .
+			$array['rep_mail'] .
+			"|" .
+			"".
+			"|" .
+			$array['Trasladados'] .
+			"|" .
+			"RETENIDOS" .
+			"|" .
+			"IVA" .
+			"|" .
+			"" .
+			"|" .
+			"" .
+			"|" .
+			"ISR" .
+			"|" .
+			"" .
+			"|" .
+			"".
+			"|" .
+			$array['l_expedicion'] .
+			"|" .
+			$array['schema_register_c'] .
+			"|" .
+			$array['no_cuenta'] .
+			"|" .
+			"N".
+			PHP_EOL;
 			$opp_no =1;
 			$cantidad =1;
 			 
@@ -170,103 +403,21 @@ deleted=0;",$ops);
 							$cadena_ .= "|";
 							$cadena_ .=$opp_no ++; //Numero de partida
 							$cadena_ .= "|";
-							$cadena_ .=$ops->acquired_credits_c;    // Cantidad facturada.
-							$cadena_ .= "|";
-							$cadena_ .=$ops->clave_unidad_estandar_c;    // Clave unidad estandar
-							$cadena_ .= "|";
-							$cadena_ .=$ops->unidadmedida_c;    // Unidad de medida
-							$cadena_ .= "|";
-							$cadena_ .=$ops->clave_producto_servicio;    // Clave de producto o servicio
-							$cadena_ .= "|";
-							$cadena_ .=$ops->num_registro_identidad_fis_c;    // Numero de identificacion
-							$cadena_ .= "|";
-							$cadena_ .=$ops->descrip; // descripcion
-							$cadena_ .= "|";
-							$cadena_ .=number_format((($unit =(($ops->amount)/(1-($ops->discount_c /100)))/1.16)/$ops->acquired_credits_c),6); //precio unit
-							$cadena_ .= "|";
-							$cadena_ .=$ops->desc; // descuento..............
-							$cadena_ .= "|";
-							$cadena_ .=number_format(($imp = $unit * $cantidad),3); //importe neto
-							$cadena_ .= "|";
-							$cadena_ .="";  //no pedimento
-							$cadena_ .= "|";
-							$cadena_ .="";  //no predial
-
-/* duplicar el bloque anterior (desde 03 hasta no predial) y anexarlo abajo dos veces correspondientes a partidas impuestos y partidas impuestos globales y comentar todo de condiciones comerciales*/
-
-							$this->actualiza_oportunidad($id,$ops->id);					
-							$cadena_ .= "|";
-							$cadena_ .= "PARTIDAS IMPUESTOS";
-							$cadena_ .= "|";
-							$cadena_ .=$opp_no ++; //Numero de partida
-							$cadena_ .= "|";
-							$cadena_ .=$ops->acquired_credits_c;    // Cantidad facturada.
-							$cadena_ .= "|";
-							$cadena_ .=$ops->claveunidad_c;    // Clave unidad estandar
-							$cadena_ .= "|";
-							$cadena_ .=$ops->unidadmedida_c;    // Unidad de medida
-							$cadena_ .= "|";
-							$cadena_ .=$ops->clve_prod_ser;    // Clave de producto o servicio
-							$cadena_ .= "|";
-							$cadena_ .=$ops->numero_ident;    // Numero de identificacion
-							$cadena_ .= "|";
-							$cadena_ .=$ops->descrip; // descripcion
-							$cadena_ .= "|";
-							$cadena_ .=number_format((($unit =(($ops->amount)/(1-($ops->discount_c /100)))/1.16)/$ops->acquired_credits_c),6); //precio unit
-							$cadena_ .= "|";
-							$cadena_ .=$ops->desc; // descuento..............
-							$cadena_ .= "|";
-							$cadena_ .=number_format(($imp = $unit * $cantidad),3); //importe neto
-							$cadena_ .= "|";
-							$cadena_ .="";  //no pedimento
-							$cadena_ .= "|";
-							$cadena_ .="";  //no predial
-
-
-
-
-
-
-
-							$this->actualiza_oportunidad($id,$ops->id);					
-							$cadena_ .= "|";
-							$cadena_ .= "PARTIDAS IMPUESTOS GLOBALES";
-							$cadena_ .= "|";
-							$cadena_ .=$opp_no ++; //Numero de partida
-							$cadena_ .= "|";
-							$cadena_ .=$ops->acquired_credits_c;    // Cantidad facturada.
-							$cadena_ .= "|";
-							$cadena_ .=$ops->claveunidad_c;    // Clave unidad estandar
-							$cadena_ .= "|";
-							$cadena_ .=$ops->unidadmedida_c;    // Unidad de medida
-							$cadena_ .= "|";
-							$cadena_ .=$ops->clve_prod_ser;    // Clave de producto o servicio
-							$cadena_ .= "|";
-							$cadena_ .=$ops->numero_ident;    // Numero de identificacion
-							$cadena_ .= "|";
-							$cadena_ .=$ops->descrip; // descripcion
-							$cadena_ .= "|";
-							$cadena_ .=number_format((($unit =(($ops->amount)/(1-($ops->discount_c /100)))/1.16)/$ops->acquired_credits_c),6); //precio unit
-							$cadena_ .= "|";
-							$cadena_ .=$ops->desc; // descuento..............
-							$cadena_ .= "|";
-							$cadena_ .=number_format(($imp = $unit * $cantidad),3); //importe neto
-							$cadena_ .= "|";
-							$cadena_ .="";  //no pedimento
-							$cadena_ .= "|";
-							$cadena_ .="";  //no predial
-
-
-
-
-
-							/*
+							$cadena_ .=$ops->acquired_credits_c;    // Cantidad de articulos o serv a facturar.
 							$cadena_ .= "|";
 							$cadena_ .="No aplica";    // Unidad.
 							$cadena_ .= "|";
 							$cadena_ .="";    // Clave.
 							$cadena_ .= "|";
+							$cadena_ .=$ops->name; //descrip.
+							$cadena_ .= "|";
+							$cadena_ .=number_format((($unit =(($ops->amount)/(1-($ops->discount_c /100)))/1.16)/$ops->acquired_credits_c),6); //precio unit
+							$cadena_ .= "|";
 							if($ops->discount_c>0){$cadena_ .=number_format($ops->discount_c,3);}else{$cadena_ .=$ops->discount_c; } 
+							$cadena_ .= "|";
+							$cadena_ .=number_format(($imp = $unit * $cantidad),3); //importe neto
+							$cadena_ .= "|";
+							$cadena_ .="";  //no pedimento
 							$cadena_ .= "|";
 							$cadena_ .=""; //fecha de pedimento
 							$cadena_ .= "|";
@@ -288,12 +439,7 @@ deleted=0;",$ops);
 							$cadena_ .= "|";
 							$cadena_ .="";//importe ieps trasladado
 							$cadena_ .=PHP_EOL;
-							*/
-
-
-
-
-
+						
 							}
 							
 			file_put_contents("layout/".utf8_encode($link),$cadena.$cadena_);
