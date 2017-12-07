@@ -45,8 +45,10 @@ class factura{
 
 	public function emisor(){
 
-		$this->db->setQuery("SELECT *  FROM accounts inner join accounts_cstm on id=id_c where id ='9aa066b1-db8f-caa4-ddcd-5a1efcc2fd5b' and deleted=0");
+		//$this->db->setQuery("SELECT *  FROM accounts inner join accounts_cstm on id=id_c where id ='9aa066b1-db8f-caa4-ddcd-5a1efcc2fd5b' and deleted=0");
+		$this->db->setQuery("SELECT *  FROM accounts inner join accounts_cstm on id=id_c where id ='f0225eab-0a71-9d78-7345-4dd56b4276c2' and deleted=0");
 		return $datos_emisor=$this->db->loadObject();
+		//cambiar el id de acuerdo al de la cuenta a checar
 
 	}
 
@@ -218,8 +220,6 @@ class factura{
 		//}
 
 		$imp =
-		"03-IMP" .
-		"|" .
 	    $array['imp_'] ;
 
 		$cadena2 ="04" .
