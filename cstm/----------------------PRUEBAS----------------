@@ -1,0 +1,18 @@
+----------------------PRUEBAS----------------
+1.- Que se llenen corretamente los datos de emisor
+2.- Checar las partidas
+3.- Validar los Importes de acuerdo al precio unitario
+4.- Que se genere correcto el archivo de txt
+
+*********************
+
+
+- En datos del receptor los campos de Total de impuestos retenidos y trasladados "sobrarian".
+- Por default el uso de cfdi (ley gral ...)
+- El precio untario quitarle el iva para que sea la base $1 /1.16= 0.86; solo con dos decimales y redondearlo
+
+preciounit= preciounit/1.16 
+descuento= descuento/100
+importe=preciounit*cantidad (el precio unitario debe ser es que ya esta redondeado * cantidad)
+
+- El importe es cantidad por precio unitario bruto (quitandole el iva)

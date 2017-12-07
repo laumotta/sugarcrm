@@ -381,10 +381,19 @@ session_start();
 			foreach($model->partidas($ops) as $partida)
 			{	
 				//echo print_r($partida,1);
-				$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
+				/*$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
 				$cantidad =$partida->acquired_credits_c;
 				$unit =((($partida->amount)/(1-($partida->discount_c /100)))/1.16/$cantidad);
-				$unit2 = $partida->unite_price_c;
+				$unit2 = $partida->unite_price_c; */
+
+				//nuevas operaciones
+				$punit= ($partida->unite_price_c / 1.16); 
+				$cantidad =$partida->acquired_credits_c;
+				$impnto= ($punit*$cantidad); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
+				$desc =($impnto*$partida->discount_c )/100;
+
+
+
 
 				?>
 				<TR>
@@ -393,10 +402,15 @@ session_start();
 						<td><?php echo $partida->unidad_medida_c; ?></td> <!--unidad de media-->
 						<td><?php echo $partida->clave_producto_c; ?></td> <!--clve de prod/serv-->
 						<td><?php echo $partida->clave_c; ?></td> <!--num de identificacion fiscal-->
-						<TD> <?php echo $partida->name; ?></TD> <!--descripcion-->
-						<TD><?php echo number_format($unit2,6);?></TD><!--precio unitario-->
-						<TD><?php  $desc =($impnto*$partida->discount_c )/100; echo $desc; ?></TD><!-- descuento -->
-						<TD><?php  echo number_format($impnto,3); ?></TD> <!--importe neto=cantidad * precio uni-->
+						<TD><?php echo $partida->name; ?></TD> <!--descripcion-->
+						<!--<TD><?php echo number_format ($punit,2);?></TD>precio unitario-->
+						<td><?php  echo number_format($punit,2) ;?> </td>
+
+						<TD><?php echo number_format($desc,2);?></TD><!-- descuento -->
+
+						<TD><?php  echo number_format($impnto,2); ?></TD> <!--importe neto=cantidad * precio uni-->
+						<!--<td><?php $impnto= $cantidad*$punit; echo round($impnto,2)?></td> -->
+
 						<td><?php echo $partida->pedimento_c; ?></td> <!--num de identificacion fiscal-->
 						<td><?php echo $partida->predial_c; ?></td> <!--num de identificacion fiscal-->
 					</TD></TR>   
@@ -404,7 +418,6 @@ session_start();
 
 					$Subtotal=$Subtotal+$impnto;
 					$to_descuento=$to_descuento+$desc;
-
 
 				}	?>
 		</TABLE>
@@ -443,8 +456,14 @@ session_start();
 			$index = 0;
 			foreach($model->partidas($ops) as $partida)
 			{	
-				$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
+				/*$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
+				$desc =($impnto*$partida->discount_c )/100; */
+
+				$punit= ($partida->unite_price_c / 1.16); 
+				$cantidad =$partida->acquired_credits_c;
+				$impnto= ($punit*$cantidad); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
 				$desc =($impnto*$partida->discount_c )/100;
+
 			
 				?>
 				<tr>
@@ -453,7 +472,8 @@ session_start();
 					<td width="5%" id="tipo_imp"><?php echo ($tipo_imp); ?></td>
 					<td width="5%" id="tipo_fact"><?php echo ($tipo_fact); ?></td>
 					<td width="5%" id="tasa_cuo" value=""><?php echo $tasa_cuo->discount_c; echo ($tasa_cuo); ?></td>
-					<td width="5%"><?php $tot= ($base-($base*$tasa_cuo)); echo number_format($tot) ;?></td>
+					<!-- <td width="5%"><?php $tot= ($base-($base*$tasa_cuo)); echo number_format($tot) ;?></td> <!--importe=(base*tasa -->
+					<td width="5%"><?php $tot= $base*$tasa_cuo; echo number_format($tot,2) ;?></td>
 				</tr>
 				<?php 
 
@@ -526,7 +546,7 @@ session_start();
 						<td width="7.5%" id="impuesto"><?php  echo ($globales['impuesto']); ?></td>
 						<td width="7.5%" id="factor"><?php  echo ($globales['factor']); ?></td>
 						<td width="7.5%" id="cuota"><?php  echo ($globales['cuota']); ?></td>
-						<td width="7.5%" id="importe"><?php echo ($globales['importe']);?></td>
+						<td width="7.5%" id="importe"><?php echo number_format(($globales['importe']),2);?></td>
 					</tr>
 
 				</table>
@@ -588,7 +608,7 @@ session_start();
 							</td>
 
 							<td scope="row" width="" size="30">
-								% Descuento:
+								Descuento:
 							</td>
 							<td width="">
 								<input name="Descuento" id="Descuento" size="60"  maxlength="" value="<?php echo number_format($to_descuento,3); ?>" class="required" READONLY>
@@ -667,7 +687,7 @@ session_start();
 										Confirmacion
 									</td>
 									<td width="37.5%">
-										<input type="text" name="Confirmacion" id="Confirmacion" size="60" value="Confirmacion" maxlength=""  >
+										<input type="text" name="Confirmacion" id="Confirmacion" size="60" value="Vacio" maxlength=""  >
 									</td>
 								</tr>
 
