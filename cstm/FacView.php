@@ -255,7 +255,7 @@ session_start();
 											</span>
 										</td>
 									</tr>
-
+									<!--
 									<tr>
 										<td scope="row" width="" size="30">
 											Total Impuestos Retenidos
@@ -270,7 +270,7 @@ session_start();
 										<td width="37.5%">
 											<input type="text" name="Trasladados"  id="Trasladados" value="0"  class="required" size="60" READONLY>
 										</td>
-									</tr></div></table>
+									</tr>--></div></table>
 
 <table id="detailpanel_4" cellspacing="2">
 	<div id="LBL_PANEL_ASSIGNMENT" class="detail view">
@@ -368,8 +368,7 @@ session_start();
 					<TH>Precio Unitario</TH>
 					<TH>Descuento</TH>
 					<TH>Importe Neto</TH>
-					<TH>Pedimento</TH>
-					<TH>Predial</TH>
+					
 				</TR>
 			</THEAD>
 
@@ -388,8 +387,11 @@ session_start();
 
 				//nuevas operaciones
 				$punit= ($partida->unite_price_c / 1.16); 
+				$round = number_format($punit,2);
+				
+
 				$cantidad =$partida->acquired_credits_c;
-				$impnto= ($punit*$cantidad); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
+				$impnto= ($round*$cantidad); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
 				$desc =($impnto*$partida->discount_c )/100;
 
 
@@ -403,26 +405,39 @@ session_start();
 						<td><?php echo $partida->clave_producto_c; ?></td> <!--clve de prod/serv-->
 						<td><?php echo $partida->clave_c; ?></td> <!--num de identificacion fiscal-->
 						<TD><?php echo $partida->name; ?></TD> <!--descripcion-->
-						<!--<TD><?php echo number_format ($punit,2);?></TD>precio unitario-->
-						<td><?php  echo number_format($punit,2) ;?> </td>
-
+						<td><?php echo $round;?> </td><!--precio unitario-->
 						<TD><?php echo number_format($desc,2);?></TD><!-- descuento -->
-
-						<TD><?php  echo number_format($impnto,2); ?></TD> <!--importe neto=cantidad * precio uni-->
-						<!--<td><?php $impnto= $cantidad*$punit; echo round($impnto,2)?></td> -->
-
-						<td><?php echo $partida->pedimento_c; ?></td> <!--num de identificacion fiscal-->
-						<td><?php echo $partida->predial_c; ?></td> <!--num de identificacion fiscal-->
+						<TD><?php echo number_format($impnto,2); ?></TD> <!--importe neto=cantidad * precio uni-->		
 					</TD></TR>   
 					<?php    
 
 					$Subtotal=$Subtotal+$impnto;
 					$to_descuento=$to_descuento+$desc;
 
+					$partidas_ .= "03";
+					$partidas_ .= "|";
+					$partidas_ .=$partida->claveunidad_c ++; //Numero de seccion
+					$partidas_ .= "|";
+					$partidas_ .=$partidas->unidad_medida_c;
+					$partidas_ .= "|";
+					$partidas_ .=$partidas->clave_producto_c; 
+					$partidas_ .= "|";
+					$partidas_ .=$partidas->clave_c;
+					$partidas_ .= "|";
+					$partidas_ .=$partidas->name; 
+					$partidas_ .= "|";
+					$partidas_ .=$round; 
+					$partidas_ .= "|";
+					$partidas_ .= number_format($desc,2);
+					$partidas_ .= "|";
+					$partidas_ .= number_format($impnto,2);
+					$partidas_ .=PHP_EOL;	
+
 				}	?>
 		</TABLE>
 	</div>
 </table>
+		<input type="hidden" class="code" name="partidas_" value="<?php echo($partidas_) ;?>" > &nbsp;
 
 <table id="detailpanel_4" cellspacing="2">
 	<div id="PART" class="detail view">
@@ -468,7 +483,7 @@ session_start();
 				?>
 				<tr>
 					<td width="5%" id="tipo" value=""><?php  echo $tipo;?></td>
-					<td width="5%" id="base"><?php $base=($impnto-$desc); echo $base;?></td><!--Base=importeneto -descuento -->
+					<td width="5%" id="base"><?php $base=($impnto-$desc); echo number_format($base,6);?></td><!--Base=importeneto -descuento -->
 					<td width="5%" id="tipo_imp"><?php echo ($tipo_imp); ?></td>
 					<td width="5%" id="tipo_fact"><?php echo ($tipo_fact); ?></td>
 					<td width="5%" id="tasa_cuo" value=""><?php echo $tasa_cuo->discount_c; echo ($tasa_cuo); ?></td>
@@ -645,7 +660,7 @@ session_start();
 
 
 									<td width="">
-										<input type="text" name="total" id="total" size="60" value="<?php  echo($total); ?>" class="required"   READONLY>
+										<input type="text" name="total" id="total" size="60" value="<?php  echo number_format($total,2); ?>" class="required"   READONLY>
 									</td>
 								</tr>
 

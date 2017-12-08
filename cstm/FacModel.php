@@ -106,7 +106,7 @@ class factura{
 		"|" .
 		$array['subtotal'] .
 		"|" .
-		number_format($array['_Descuento'],6) .
+		number_format($array['_Descuento'],2) .
 		"|" .
 		$array['Moneda'] .
 		"|" .
@@ -143,10 +143,10 @@ class factura{
 		$array['uso_cfdi'] .
 		"|" .
 		$array['rep_mail'] .
-		"|" .
-		$array['Retenidos'] .
-		"|" .
-		$array['Trasladados'] .
+		// "|" .
+		// $array['Retenidos'] .
+		// "|" .
+		// $array['Trasladados'] .
 		"|" .
 		"INFO ADIC" .
 		"|" .
@@ -166,39 +166,44 @@ class factura{
 		$opp_no =1;
 		$cantidad =1;
 
-		$opp = stripslashes($array['partidas']);
+		// $opp = stripslashes($array['partidas']);
 
-		foreach($this->partidas($opp) as $ops)
-			{			$this->actualiza_oportunidad($id,$ops->id);					
-				$cadena_ .= "03";
-				$cadena_ .= "|";
-		$cadena_ .=$opp_no ++; //Numero de seccion
-		$cadena_ .= "|";
-		$cadena_ .=$ops->acquired_credits_c; // Cantidad facturada.
-		$cadena_ .= "|";
-		$cadena_ .=$ops->clave_unidad_estandar_c; 
-		$cadena_ .= "|";
-		$cadena_ .=$ops->unidadmedida_c;    // Unidad de medida
-		$cadena_ .= "|";
-		$cadena_ .=$ops->clave_producto_servicio; 
-		$cadena_ .= "|";
-		$cadena_ .=$ops->num_registro_identidad_fis_c; 
-		$cadena_ .= "|";
-		$cadena_ .=$ops->descrip; // descripcion
-		$cadena_ .= "|";
-		$cadena_ .=number_format((($unit =(($ops->amount)/(1-($ops->discount_c /100)))/1.16)/$ops->acquired_credits_c),6); //precio unit
-		$cadena_ .= "|";
-		$cadena_ .=$ops->desc; // descuento
-		$cadena_ .= "|";
-		$cadena_ .=number_format(($imp = $unit * $cantidad),3); //importe neto
-		$cadena_ .= "|";
-		$cadena_ .="";  //no pedimento
-		$cadena_ .= "|";
-		$cadena_ .="";  //no predial
-		$cadena_ .=PHP_EOL;						
+		// foreach($this->partidas($opp) as $ops)
+		// 	{			$this->actualiza_oportunidad($id,$ops->id);	
 
-		}
+		// 		$punit= ($ops->unite_price_c / 1.16); 
+		// 		$cantidad =$ops->acquired_credits_c;
+				
 
+		// $cadena_ .= "03";
+		// $cadena_ .= "|";
+		// $cadena_ .=$opp_no ++; //Numero de seccion
+		// $cadena_ .= "|";
+		// $cadena_ .=$ops->acquired_credits_c; // Cantidad facturada.
+		// $cadena_ .= "|";
+		// $cadena_ .=$ops->clave_unidad_estandar_c; 
+		// $cadena_ .= "|";
+		// $cadena_ .=$ops->unidadmedida_c;    // Unidad de medida
+		// $cadena_ .= "|";
+		// $cadena_ .=$ops->clave_producto_servicio; 
+		// $cadena_ .= "|";
+		// $cadena_ .=$ops->num_registro_identidad_fis_c; 
+		// $cadena_ .= "|";
+		// $cadena_ .=$ops->descrip; // descripcion
+		// $cadena_ .= "|";
+		// $cadena_ .=number_format($punit= ($ops->unite_price_c / 1.16) ,2); //precio unit
+		// $cadena_ .= "|";
+		// $cadena_ .=$ops->desc; // descuento
+		// $cadena_ .= "|";
+		// $cadena_ .=number_format($impnto=($punit*$cantidad),2); //importe neto
+		// $cadena_ .= "|";
+		// $cadena_ .="";  //no pedimento
+		// $cadena_ .= "|";
+		// $cadena_ .="";  //no predial
+		// $cadena_ .=PHP_EOL;						
+
+		// }
+		$cadena_ = $array['partidas_'] ;
 		// echo "SESSION >>>" . print_r($_SESSION['mydata'][0]);
 		// var_dump($_SESSION['mydata']);
 		//echo $array['03-IMP'];
@@ -218,9 +223,7 @@ class factura{
 			// $cadena_ .=$value['importe'];
 			//$cadena_ .=PHP_EOL;
 		//}
-
-		$imp =
-	    $array['imp_'] ;
+		$imp = $array['imp_'] ;
 
 		$cadena2 ="04" .
 		"|".
@@ -232,7 +235,7 @@ class factura{
 		"|".
 		$array['globales_cuota'] .
 		"|".
-		$array['globales_importe'] ;
+		echo number_format($array['globales_importe'],2) ;
 
 
 	file_put_contents("layout/".utf8_encode($link),$cadena.$cadena_.$imp.$cadena2);

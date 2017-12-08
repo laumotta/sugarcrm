@@ -311,17 +311,6 @@ READONLY>',
         array (
           0 => 
           array (
-            'name' => 'created_by_name',
-            'label' => 'LBL_CREATED',
-          ),
-        ),
-      ),
-      'LBL_PANEL_ASSIGNMENT' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
             'name' => 'claveunidad_c',
             'studio' => 'visible',
             'label' => 'LBL_CLAVEUNIDAD',
@@ -333,7 +322,7 @@ READONLY>',
             'label' => 'LBL_CLAVE_PRODUCTO',
           ),
         ),
-        1 => 
+        13 => 
         array (
           0 => 
           array (
@@ -346,7 +335,10 @@ READONLY>',
             'label' => 'LBL_CLAVE',
           ),
         ),
-        2 => 
+      ),
+      'LBL_PANEL_ASSIGNMENT' => 
+      array (
+        0 => 
         array (
           0 => 
           array (
@@ -361,7 +353,7 @@ READONLY>',
             'label' => 'LBL_LEAD_SOURCE',
           ),
         ),
-        3 => 
+        1 => 
         array (
           0 => 
           array (
@@ -375,7 +367,7 @@ READONLY>',
             'label' => 'LBL_CAMPAIGN',
           ),
         ),
-        4 => 
+        2 => 
         array (
           0 => 
           array (
@@ -384,7 +376,7 @@ READONLY>',
             'label' => 'LBL_PROBABILITY',
           ),
         ),
-        5 => 
+        3 => 
         array (
           0 => 
           array (
@@ -403,7 +395,7 @@ name="{$fields.cstm_commi141cissions_ida.name}"/>
 ',
           ),
         ),
-        6 => 
+        4 => 
         array (
           0 => 
           array (
@@ -428,12 +420,7 @@ id="{$fields.serial_c.name}" value="{$fields.serial_c.value}" >',
             'name' => 'saved_c',
             'label' => 'LBL_SAVED',
           ),
-          1 => 
-          array (
-            'name' => 'invoiced_c',
-            'studio' => 'visible',
-            'label' => 'LBL_INVOICED',
-          ),
+          1 => '',
         ),
       ),
     ),

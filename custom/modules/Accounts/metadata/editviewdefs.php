@@ -215,53 +215,20 @@ document.getElementById("btn_clr_assigned_user_name").disabled = true;
           ),
           1 => 
           array (
-            'name' => 'annual_revenue',
-            'comment' => 'Annual revenue for this company',
-            'label' => 'LBL_ANNUAL_REVENUE',
+            'name' => 'promocion_c',
+            'label' => 'LBL_PROMOCION',
           ),
         ),
         9 => 
         array (
           0 => 
           array (
-            'name' => 'created_by_name',
-            'label' => 'LBL_CREATED',
-          ),
-          1 => 
-          array (
-            'name' => 'date_modified',
-            'comment' => 'Date record last modified',
-            'label' => 'LBL_DATE_MODIFIED',
-          ),
-        ),
-        10 => 
-        array (
-          0 => 
-          array (
-            'name' => 'date_entered',
-            'comment' => 'Date record created',
-            'label' => 'LBL_DATE_ENTERED',
-          ),
-          1 => 
-          array (
-            'name' => 'modified_by_name',
-            'label' => 'LBL_MODIFIED_NAME',
-          ),
-        ),
-        11 => 
-        array (
-          0 => 
-          array (
-            'name' => 'phone_fax',
-            'label' => 'LBL_PHONE_FAX',
-          ),
-          1 => 
-          array (
             'name' => 'numero_cuenta_c',
             'label' => 'LBL_NUMERO_CUENTA',
           ),
+          1 => '',
         ),
-        12 => 
+        10 => 
         array (
           0 => 
           array (
@@ -274,7 +241,7 @@ document.getElementById("btn_clr_assigned_user_name").disabled = true;
             'label' => 'LBL_CONDICIONES_PAGO',
           ),
         ),
-        13 => 
+        11 => 
         array (
           0 => 
           array (
@@ -289,7 +256,7 @@ document.getElementById("btn_clr_assigned_user_name").disabled = true;
             'label' => 'LBL_METODO_PAGO',
           ),
         ),
-        14 => 
+        12 => 
         array (
           0 => 
           array (
