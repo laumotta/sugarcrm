@@ -374,9 +374,9 @@ session_start();
 
 			<input name ="partidas"  type="hidden"  name="mass[]" id="mass[]" value="<?php echo $ops;?>"  class="required"  READONLY>
 			<?php 
-			$nopartida =1;
 			$Subtotal=0;
 			$descuento=0;
+			$index_partida=1;
 			foreach($model->partidas($ops) as $partida)
 			{	
 				//echo print_r($partida,1);
@@ -389,50 +389,60 @@ session_start();
 				$punit= ($partida->unite_price_c / 1.16); 
 				$round = number_format($punit,2);
 				
-
 				$cantidad =$partida->acquired_credits_c;
-				$impnto= ($round*$cantidad); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
-				$desc =($impnto*$partida->discount_c )/100;
+				$impnto= number_format($round*$cantidad,2); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
+				$desc = number_format((($impnto*$partida->discount_c )/100),2);
 
-
+				$clv_uni= $partida->claveunidad_c;
+				$uni_med= $partida->unidad_medida_c;
+				$clv_pro= $partida->clave_producto_c;
+				$clave= $partida->clave_c;
+				$nam = $partida->name;
 
 
 				?>
 				<TR>
 					<TD><?php echo $cantidad ; ?> <!--cantidad-->
-						<td><?php echo $partida->claveunidad_c; ?></td> <!--clave unidad est-->
-						<td><?php echo $partida->unidad_medida_c; ?></td> <!--unidad de media-->
-						<td><?php echo $partida->clave_producto_c; ?></td> <!--clve de prod/serv-->
-						<td><?php echo $partida->clave_c; ?></td> <!--num de identificacion fiscal-->
-						<TD><?php echo $partida->name; ?></TD> <!--descripcion-->
+						<td><?php echo $clv_uni; ?></td> <!--clave unidad est-->
+						<td><?php echo $uni_med; ?></td> <!--unidad de media-->
+						<td><?php echo $clv_pro; ?></td> <!--clve de prod/serv-->
+						<td><?php echo $clave; ?></td> <!--num de identificacion fiscal-->
+						<TD><?php echo $nam; ?></TD> <!--descripcion-->
 						<td><?php echo $round;?> </td><!--precio unitario-->
-						<TD><?php echo number_format($desc,2);?></TD><!-- descuento -->
-						<TD><?php echo number_format($impnto,2); ?></TD> <!--importe neto=cantidad * precio uni-->		
+						<TD><?php echo $desc;?></TD><!-- descuento -->
+						<TD><?php echo $impnto; ?></TD> <!--importe neto=cantidad * precio uni-->		
 					</TD></TR>   
 					<?php    
 
-					$Subtotal=$Subtotal+$impnto;
-					$to_descuento=$to_descuento+$desc;
+					$Subtotal= number_format($Subtotal+$impnto,2);
+					$to_descuento= number_format($to_descuento+$desc,2);
 
 					$partidas_ .= "03";
 					$partidas_ .= "|";
-					$partidas_ .=$partida->claveunidad_c ++; //Numero de seccion
+					$partidas_ .= $index_partida;
 					$partidas_ .= "|";
-					$partidas_ .=$partidas->unidad_medida_c;
+					$partidas_ .= $cantidad;
 					$partidas_ .= "|";
-					$partidas_ .=$partidas->clave_producto_c; 
+					$partidas_ .=$clv_uni; //Numero de seccion
 					$partidas_ .= "|";
-					$partidas_ .=$partidas->clave_c;
+					$partidas_ .=$uni_med;
 					$partidas_ .= "|";
-					$partidas_ .=$partidas->name; 
+					$partidas_ .=$clv_pro; 
+					$partidas_ .= "|";
+					$partidas_ .=$clave;
+					$partidas_ .= "|";
+					$partidas_ .=$nam; 
 					$partidas_ .= "|";
 					$partidas_ .=$round; 
 					$partidas_ .= "|";
-					$partidas_ .= number_format($desc,2);
+					$partidas_ .= $desc;
 					$partidas_ .= "|";
-					$partidas_ .= number_format($impnto,2);
+					$partidas_ .= $impnto;
+					$partidas_ .= "|";
+					$partidas_ .= "|";
+					$partidas_ .= "|";
 					$partidas_ .=PHP_EOL;	
-
+					$index_partida ++;
 				}	?>
 		</TABLE>
 	</div>
@@ -456,7 +466,7 @@ session_start();
 			</THEAD>
 
 			<?php 
-			$nopartida =1;
+			//$nopartida =1;
 			$tipo = "TRASLADADOS";
 			$tipo_imp="IVA";
 			$tipo_fact="TASA";
@@ -468,7 +478,6 @@ session_start();
 			$globales= array();
 			$myarray  = array();
 			$cadena ;
-			$index = 0;
 			foreach($model->partidas($ops) as $partida)
 			{	
 				/*$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
@@ -478,12 +487,13 @@ session_start();
 				$cantidad =$partida->acquired_credits_c;
 				$impnto= ($punit*$cantidad); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
 				$desc =($impnto*$partida->discount_c )/100;
+				$base= number_format($impnto-$desc,2);
 
 			
 				?>
 				<tr>
 					<td width="5%" id="tipo" value=""><?php  echo $tipo;?></td>
-					<td width="5%" id="base"><?php $base=($impnto-$desc); echo number_format($base,6);?></td><!--Base=importeneto -descuento -->
+					<td width="5%" id="base"><?php  echo $base;?></td><!--Base=importeneto -descuento -->
 					<td width="5%" id="tipo_imp"><?php echo ($tipo_imp); ?></td>
 					<td width="5%" id="tipo_fact"><?php echo ($tipo_fact); ?></td>
 					<td width="5%" id="tasa_cuo" value=""><?php echo $tasa_cuo->discount_c; echo ($tasa_cuo); ?></td>
@@ -492,14 +502,14 @@ session_start();
 				</tr>
 				<?php 
 
-				$importeglobal=$importeglobal+$tot;
+				$importeglobal=number_format($importeglobal+$tot,2);
 				$globales= array('tipo' => $tipo, 'impuesto' => $tipo_imp, 'factor' => $tipo_fact, 'cuota' => $tasa_cuo , 'importe' => $importeglobal);
 
 				$mydata= array('tipo' => $tipo, 'impuesto' => $tipo_imp, 'factor' => $tipo_fact, 'cuota' => $tasa_cuo , 'importe' => $tot);
 
 				array_push($myarray,$mydata);
 				
-					$imp_ .='03-IMP'; 
+					$imp_ .='03-IMP';
 					$imp_ .= "|";
 					$imp_ .=$tipo;
 					$imp_ .= "|";
@@ -513,7 +523,6 @@ session_start();
 					$imp_ .= "|";
 					$imp_ .=$tot;
 					$imp_ .=PHP_EOL;
-					$index ++;
 
 					// $arreglo_global[$impuesto]['tipo'] =  $tipo;
 					// $arreglo_global[$impuesto]['impuesto'] =  $tipo_imp;
@@ -619,14 +628,14 @@ session_start();
 								Subtotal:
 							</td>
 							<td width="37.5%">
-								<input type="text" name="subtotal" id="subtotal" size="60" value="<?php echo number_format($Subtotal,3);  ?>"  class="required"    READONLY>
+								<input type="text" name="subtotal" id="subtotal" size="60" value="<?php echo $Subtotal;  ?>"  class="required"    READONLY>
 							</td>
 
 							<td scope="row" width="" size="30">
 								Descuento:
 							</td>
 							<td width="">
-								<input name="Descuento" id="Descuento" size="60"  maxlength="" value="<?php echo number_format($to_descuento,3); ?>" class="required" READONLY>
+								<input name="Descuento" id="Descuento" size="60"  maxlength="" value="<?php echo $to_descuento; ?>" class="required" READONLY>
 							</td>
 						</tr>
 							<tr>

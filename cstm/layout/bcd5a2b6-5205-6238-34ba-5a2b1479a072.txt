@@ -1,0 +1,4 @@
+01|FA|3.3|A|25467|02|00001000000406180982|condiciones de pago|534.00||MXN|1.0|309.62|E|PUE|Calle de las gardenias 749 Col Espinal Orizaba Veracruz, Mexico|Vacio|EMISOR|PUPC100101EB7|CUENTA EMISOR|606|RECEPTOR|CCA070526FR0| REC |MEXICO|numero de regostro de ident 2|G03|alaurasandmotta@gmail.com|||INFO ADIC|m_descuento|Calle de las gardenias 749 Col Espinal Orizaba Veracruz, Mexico|Calle de las gardenias 749 Col Espinal Orizaba Veracruz, Mexico|FRANCISCO JAVIER MINA 417  FATIMA AHOME LOS MOCHIS SINALOA MEXICO 81220|12345678910|N
+03|1|E48|||||1.78|267.00|534.00|||
+03-IMP|1|TRASLADADOS|266.38|IVA|TASA|0.16|42.6208
+04|TRASLADADOS|IVA|TASA|0.16|42.62

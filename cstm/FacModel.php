@@ -87,81 +87,81 @@ class factura{
 		$assig =$array['asignado'];
 		//echo " recibimos array >>". print_r($array);
 		$fac=$this->inserta_registro($id,$assig,$array['account']);
-		$cadena =
-		"01" .
-		"|" .
-		$array['tipo_CFD'] .
-		"|" .
-		$array['version'] .
-		"|" .
-		$array['serie'] .
-		"|" .
-		$fac->folio_c .
-		"|" .
-		$array['forma_pago'] .
-		"|" .
-		$array['NoCertificado'] .
-		"|" .
-		$array['Condiciones_pago'] .
-		"|" .
-		$array['subtotal'] .
-		"|" .
-		number_format($array['_Descuento'],2) .
-		"|" .
-		$array['Moneda'] .
-		"|" .
-		$array['Cambio'] .
-		"|" .
-		$array['total'] .
-		"|" .  
-		$array['tipo_comprobante'] .
-		"|" .
-		$array['metodo_pago'] .
-		"|" .
-		$array['lugar_expedicion'] .
-		"|" .
-		$array['Confirmacion'] .
-		"|" .
-		"EMISOR".
-		"|" .
-		$array['RFC'] .
-		"|" .
-		$array['nombre_rs'] .
-		"|" .
-		$array['regimen_fiscal'] .
-		"|" .
-		"RECEPTOR" .
-		"|" .
-		$array['rep_RFC'] .
-		"|" .
-		$array['rep_name_rs'] .
-		"|" .
-		$array['rep_red_fis'] .
-		"|" .
-		$array['num_registro_identidad_fis_c'] .
-		"|" .
-		$array['uso_cfdi'] .
-		"|" .
-		$array['rep_mail'] .
-		// "|" .
-		// $array['Retenidos'] .
-		// "|" .
-		// $array['Trasladados'] .
-		"|" .
-		"INFO ADIC" .
-		"|" .
-		$array['m_descuento'] .
-		"|" .
-		$array['l_expedicion'] . //emisor domicilio fiscal
-		"|" .
-		$array['l_expedicion'] . //emisor expedido en:
-		"|" .
-		$array['receptor_domicilio'] .
-		"|" .
-		$array['no_cuenta'] .
-		"|" .
-		$array['Desglose'] .
-		PHP_EOL;
+		
+		$cadena .="01" ;
+		$cadena .="|" ;
+		$cadena .=$array['tipo_CFD'] ;
+		$cadena .="|" ;
+		$cadena .=$array['version'] ;
+		$cadena .="|" ;
+		$cadena .=$array['serie'] ;
+		$cadena .="|" ;
+		$cadena .=$fac->folio_c ;
+		$cadena .="|" ;
+		$cadena .=$array['forma_pago'] ;
+		$cadena .="|" ;
+		$cadena .=$array['NoCertificado'] ;
+		$cadena .="|" ;
+		$cadena .=$array['Condiciones_pago'] ;
+		$cadena .="|" ;
+		$cadena .=$array['subtotal'] ;
+		$cadena .="|" ;
+		$cadena .=$array['to_descuento'];
+		$cadena .="|" ;
+		$cadena .=$array['Moneda'] ;
+		$cadena .="|" ;
+		$cadena .=$array['Cambio'] ;
+		$cadena .="|" ;
+		$cadena .=$array['total'] ;
+		$cadena .="|"  ;
+		$cadena .=$array['tipo_comprobante'] ;
+		$cadena .="|" ;
+		$cadena .=$array['metodo_pago'] ;
+		$cadena .="|" ;
+		$cadena .=$array['lugar_expedicion'] ;
+		$cadena .="|" ;
+		$cadena .=$array['Confirmacion'] ;
+		$cadena .="|" ;
+		$cadena .="EMISOR";
+		$cadena .="|" ;
+		$cadena .=$array['RFC'] ;
+		$cadena .="|" ;
+		$cadena .=$array['nombre_rs'] ;
+		$cadena .="|" ;
+		$cadena .=$array['regimen_fiscal'] ;
+		$cadena .="|" ;
+		$cadena .="RECEPTOR" ;
+		$cadena .="|" ;
+		$cadena .=$array['rep_RFC'] ;
+		$cadena .="|" ;
+		$cadena .=$array['rep_name_rs'] ;
+		$cadena .="|" ;
+		$cadena .=$array['rep_red_fis'] ;
+		$cadena .="|" ;
+		$cadena .=$array['num_registro_identidad_fis_c'] ;
+		$cadena .="|" ;
+		$cadena .=$array['uso_cfdi'] ;
+		$cadena .="|" ;
+		$cadena .=$array['rep_mail'] ;
+		$cadena .="|" ;
+		$cadena .=$array['Retenidos'] ;
+		$cadena .="|" ;
+		$cadena .=$array['Trasladados'] ;
+		$cadena .="|" ;
+		$cadena .="INFO ADIC" ;
+		$cadena .="|" ;
+		$cadena .=$array['m_descuento'] ;
+		$cadena .="|" ;
+		$cadena .=$array['l_expedicion'] ; //emisor domicilio fisca;
+		$cadena .="|" ;
+		$cadena .=$array['l_expedicion'] ; //emisor expedido en;
+		$cadena .="|" ;
+		$cadena .=$array['receptor_domicilio'] ;
+		$cadena .="|" ;
+		$cadena .=$array['no_cuenta'] ;
+		$cadena .="|" ;
+		$cadena .=$array['Desglose'] ;
+		$cadena .= PHP_EOL;
 
 		$opp_no =1;
 		$cantidad =1;
@@ -235,7 +235,7 @@ class factura{
 		"|".
 		$array['globales_cuota'] .
 		"|".
-		echo number_format($array['globales_importe'],2) ;
+		$array['globales_importe'];
 
 
 	file_put_contents("layout/".utf8_encode($link),$cadena.$cadena_.$imp.$cadena2);
