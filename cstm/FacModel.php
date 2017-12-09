@@ -222,7 +222,7 @@ class factura{
 			// $cadena_ .=$value['importe'];
 			//$cadena_ .=PHP_EOL;
 		//}
-		$imp = $array['imp_'] ;
+		//$imp = $array['imp_'] ;
 
 		$cadena2 ="04" .
 		"|".

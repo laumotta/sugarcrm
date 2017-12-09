@@ -184,7 +184,7 @@ session_start();
 									</td>
 									<td width="">
 										<span id="account_type">
-											<input type="text" name="rep_RFC"  id="rep_RFC" value="<?php echo $rec->rfc_c; ?>" size="60"  class="required">
+											<input type="text" name="rep_RFC"  id="rep_RFC" value="<?php echo $rec->rfc_c;?>" size="60"  class="required">
 										</span>
 									</td>
 
@@ -193,7 +193,7 @@ session_start();
 									</td>
 									<td width="">
 										<span id="name">
-											<input type="text" name="rep_name_rs"  id="rep_name_rs" value=" <?php echo $rec->name; ?> " size="60"  class="required"   >
+										<input type="text" name="rep_name_rs"  id="rep_name_rs" value="<?php echo $rec->name;?>" size="60"  class="required"   >
 										</span>
 									</td>
 								</tr>
@@ -379,6 +379,10 @@ session_start();
 			$Subtotal=0;
 			$descuento=0;
 			$index_partida=1;
+			$tasa_cuo = 0.160000;
+			$tipo = "TRASLADO";
+			$tipo_imp="002";
+			$tipo_fact="TASA";
 			foreach($model->partidas($ops) as $partida)
 			{	
 				//echo print_r($partida,1);
@@ -418,7 +422,10 @@ session_start();
 
 					$Subtotal= number_format($Subtotal+$impnto,2);
 					$to_descuento= number_format($to_descuento+$desc,2);
+					$base= number_format($impnto-$desc,2);
+					$tot= $base*$tasa_cuo;
 
+					$partidas_ .= PHP_EOL;
 					$partidas_ .= "03";
 					$partidas_ .= "|";
 					$partidas_ .= $index_partida;
@@ -442,7 +449,25 @@ session_start();
 					$partidas_ .= $impnto;
 					$partidas_ .= "|";
 					$partidas_ .= "|";
-					$partidas_ .=PHP_EOL;	
+					$partidas_ .=PHP_EOL;
+
+					$partidas_ .='03-IMP';
+					$partidas_ .= "|";
+					$partidas_ .=$tipo;
+					$partidas_ .= "|";
+					$partidas_ .=$base;
+					$partidas_ .= "|";
+					$partidas_ .=$tipo_imp;
+					$partidas_ .= "|";
+					$partidas_ .=$tipo_fact;
+					$partidas_ .= "|";
+					$partidas_ .=$tasa_cuo;
+					$partidas_ .= "|";
+					$partidas_ .=$tot;
+					//$partidas_ .=PHP_EOL;
+
+
+
 					$index_partida ++;
 				}	?>
 		</TABLE>
