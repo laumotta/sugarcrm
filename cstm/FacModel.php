@@ -45,8 +45,7 @@ class factura{
 
 	public function emisor(){
 
-		$this->db->setQuery("SELECT *  FROM accounts inner join accounts_cstm on id=id_c where id ='9aa066b1-db8f-caa4-ddcd-5a1efcc2fd5b' and deleted=0");
-		//$this->db->setQuery("SELECT *  FROM accounts inner join accounts_cstm on id=id_c where id ='f0225eab-0a71-9d78-7345-4dd56b4276c2' and deleted=0");
+		$this->db->setQuery("SELECT *  FROM accounts inner join accounts_cstm on id=id_c where id ='f0225eab-0a71-9d78-7345-4dd56b4276c2' and deleted=0");
 		return $datos_emisor=$this->db->loadObject();
 		//cambiar el id de acuerdo al de la cuenta a checar
 
@@ -106,7 +105,7 @@ class factura{
 		$cadena .="|" ;
 		$cadena .=$array['subtotal'] ;
 		$cadena .="|" ;
-		$cadena .=$array['to_descuento'];
+		$cadena .=$array['Descuento'];
 		$cadena .="|" ;
 		$cadena .=$array['Moneda'] ;
 		$cadena .="|" ;
@@ -146,9 +145,9 @@ class factura{
 		$cadena .="|" ;
 		$cadena .=$array['Retenidos'] ;
 		$cadena .="|" ;
-		$cadena .=$array['Trasladados'] ;
+		$cadena .=$array['globales_importe'] ;
 		$cadena .="|" ;
-		$cadena .="INFO ADIC" ;
+		$cadena .="INFO_ADIC" ;
 		$cadena .="|" ;
 		$cadena .=$array['m_descuento'] ;
 		$cadena .="|" ;

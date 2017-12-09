@@ -202,9 +202,8 @@ session_start();
 									<td scope="row" width="" size="30">
 										Residencia Fiscal:
 									</td>
-									<td width="">		
-										<select name="rep_red_fis" id="rep_red_fis" title="" class="required"  >
-											<option value="<?php echo $rec->billing_address_country; ?>"><?php echo $rec->billing_address_country; ?> </option>
+									<td width="">	
+									<input type="text" name="rep_red_fis" id="rep_red_fis" value="<?php echo $rec->billing_address_country;?>" size="60" class="required">
 										</td>
 
 
@@ -270,7 +269,10 @@ session_start();
 										<td width="37.5%">
 											<input type="text" name="Trasladados"  id="Trasladados" value="0"  class="required" size="60" READONLY>
 										</td>
-									</tr>--></div></table>
+									</tr>-->
+
+								</div>
+							</table>
 
 <table id="detailpanel_4" cellspacing="2">
 	<div id="LBL_PANEL_ASSIGNMENT" class="detail view">
@@ -396,7 +398,7 @@ session_start();
 				$clv_uni= $partida->claveunidad_c;
 				$uni_med= $partida->unidad_medida_c;
 				$clv_pro= $partida->clave_producto_c;
-				$clave= $partida->clave_c;
+				$clave= $partida->serial_c;
 				$nam = $partida->name;
 
 
@@ -435,10 +437,9 @@ session_start();
 					$partidas_ .= "|";
 					$partidas_ .=$round; 
 					$partidas_ .= "|";
-					$partidas_ .= $desc;
+					$partidas_ .= $to_descuento;
 					$partidas_ .= "|";
 					$partidas_ .= $impnto;
-					$partidas_ .= "|";
 					$partidas_ .= "|";
 					$partidas_ .= "|";
 					$partidas_ .=PHP_EOL;	
@@ -467,8 +468,8 @@ session_start();
 
 			<?php 
 			//$nopartida =1;
-			$tipo = "TRASLADADOS";
-			$tipo_imp="IVA";
+			$tipo = "TRASLADO";
+			$tipo_imp="002";
 			$tipo_fact="TASA";
 			$tasa_cuo = 0.160000;
 
@@ -679,10 +680,8 @@ session_start();
 									</td>
 									<td width="">
 										<select name="tipo_comprobante" id="tipo_comprobante" title="" >
-											<option label="Egreso" value="E"></option>
-											<option value="I">Ingreso</option>
-											<option value="T">Traslado</option>
-											<option value="N">Nomina</option>
+											<option value="Ingreso" selected="select">Ingreso</option>
+											<option value="E">Egreso</option>				
 											<option value="P">Pago</option>
 										</select>
 									</td>
@@ -704,14 +703,14 @@ session_start();
 										Lugar de Expedición
 									</td>
 									<td width="">
-										<input type="text" name="lugar_expedicion" id="lugar_expedicion" size="60" value="<?php echo $emi->q14_c; ?>"  >
+										<input type="text" name="lugar_expedicion" id="lugar_expedicion" size="60" value="<?php echo $emi->billing_address_postalcode; ?>"  >
 									</td>
 
 									<td scope="row" width="" size="30">
 										Confirmacion
 									</td>
 									<td width="37.5%">
-										<input type="text" name="Confirmacion" id="Confirmacion" size="60" value="Vacio" maxlength=""  >
+										<input type="text" name="Confirmacion" id="Confirmacion" size="60" value="" maxlength=""  >
 									</td>
 								</tr>
 
