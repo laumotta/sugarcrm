@@ -47,6 +47,7 @@ class factura{
 
 		$this->db->setQuery("SELECT *  FROM accounts inner join accounts_cstm on id=id_c where id ='f0225eab-0a71-9d78-7345-4dd56b4276c2' and deleted=0");
 		return $datos_emisor=$this->db->loadObject();
+
 		//cambiar el id de acuerdo al de la cuenta a checar
 
 	}
@@ -160,7 +161,7 @@ class factura{
 		$cadena .=$array['no_cuenta'] ;
 		$cadena .="|" ;
 		$cadena .=$array['Desglose'] ;
-		$cadena .= PHP_EOL;
+		//$cadena .= PHP_EOL;
 
 		$opp_no =1;
 		$cantidad =1;
@@ -203,6 +204,8 @@ class factura{
 
 		// }
 		$cadena_ = $array['partidas_'] ;
+		
+
 		// echo "SESSION >>>" . print_r($_SESSION['mydata'][0]);
 		// var_dump($_SESSION['mydata']);
 		//echo $array['03-IMP'];
@@ -224,6 +227,7 @@ class factura{
 		//}
 		//$imp = $array['imp_'] ;
 
+		$cadena2 =PHP_EOL.
 		$cadena2 ="04" .
 		"|".
 		$array['globales_tipo'] .
@@ -234,7 +238,7 @@ class factura{
 		"|".
 		$array['globales_cuota'] .
 		"|".
-		$array['globales_importe'];
+		number_format($array['globales_importe'],2);
 
 
 	file_put_contents("layout/".utf8_encode($link),$cadena.$cadena_.$imp.$cadena2);

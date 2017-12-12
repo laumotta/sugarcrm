@@ -123,7 +123,8 @@ session_start();
 							</td>
 							<td width="">
 								<span id="account_type">
-									<input type="text" name="RFC" id="RFC"  value="<?php echo $emi->rfc_c; ?>" size="60"  class="required"   READONLY>
+									<input type="text" name="RFC" id="RFC"  value="<?php echo $emi->rfc_c; ?>" size="60"  class=""   READONLY>
+									<!-- se elimina como required a los campos rfc, nombre o razon social y emisor dom(infoAdi) para pruebas-->
 								</span>
 							</td>
 
@@ -132,7 +133,7 @@ session_start();
 							</td>
 							<td width="">
 								<span id="name">
-									<input type="text" name="nombre_rs"  id="nombre_rs" value="<?php echo $emi->name;?>" size="60"  class="required"   READONLY>
+									<input type="text" name="nombre_rs"  id="nombre_rs" value="<?php echo $emi->name;?>" size="60"  class=""   READONLY>
 								</span>
 							</td>
 						</tr>
@@ -184,7 +185,7 @@ session_start();
 									</td>
 									<td width="">
 										<span id="account_type">
-											<input type="text" name="rep_RFC"  id="rep_RFC" value="<?php echo $rec->rfc_c;?>" size="60"  class="required">
+										<input type="text" name="rep_RFC"  id="rep_RFC" value="<?php echo $rec->rfc_c;?>" size="60"  class="required">
 										</span>
 									</td>
 
@@ -290,7 +291,7 @@ session_start();
 				Emisor Domicilio Fiscal
 			</td>
 			<td width="">
-				<input type="text" name="l_expedicion" id="l_expedicion" size="60" value="<?php echo $emi->q14_c; ?>"  >
+				<input type="text" name="l_expedicion" id="l_expedicion" size="60" class="" value="<?php echo $emi->q14_c; ?>">
 			</td>
 		</tr>
 
@@ -382,22 +383,10 @@ session_start();
 			$tasa_cuo = 0.160000;
 			$tipo = "TRASLADO";
 			$tipo_imp="002";
-			$tipo_fact="TASA";
+			$tipo_fact="Tasa";
 			foreach($model->partidas($ops) as $partida)
 			{	
-				//echo print_r($partida,1);
-				/*$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
-				$cantidad =$partida->acquired_credits_c;
-				$unit =((($partida->amount)/(1-($partida->discount_c /100)))/1.16/$cantidad);
-				$unit2 = $partida->unite_price_c; */
 
-				//nuevas operaciones
-				$punit= ($partida->unite_price_c / 1.16); 
-				$round = number_format($punit,2);
-				
-				$cantidad =$partida->acquired_credits_c;
-				$impnto= number_format($round*$cantidad,2); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
-				$desc = number_format((($impnto*$partida->discount_c )/100),2);
 
 				$clv_uni= $partida->claveunidad_c;
 				$uni_med= $partida->unidad_medida_c;
@@ -406,25 +395,50 @@ session_start();
 				$nam = $partida->name;
 
 
+
+				$punit= ($partida->unite_price_c / 1.16); 
+				$cantidad =$partida->acquired_credits_c;
+				$impnto= ($punit*$cantidad); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
+				$desc =(($impnto*$partida->discount_c )/100);
+
+				//echo print_r($partida,1);
+				/*$impnto = ($partida->unite_price_c*$partida->acquired_credits_c);
+				$cantidad =$partida->acquired_credits_c;
+				$unit =((($partida->amount)/(1-($partida->discount_c /100)))/1.16/$cantidad);
+				$unit2 = $partida->unite_price_c; */
+
+				//nuevas operaciones
+				////$punit= ($partida->unite_price_c / 1.16); 
+				///$round = number_format($punit,6);
+				
+				////$cantidad =$partida->acquired_credits_c;
+				///$impnto= number_format($round*$cantidad,6); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
+				////$impnto= number_format($punit*$partida->acquired_credits_c,6);
+
+				///$descuento = number_format((($impnto*$partida->discount_c )/100),6);
+
+					
+					$Subtotal= number_format($Subtotal+$impnto,6);
+					$to_descuento= number_format($to_descuento+$desc,6);
+					$base= number_format($impnto-$desc,6);
+					$tot= $base*$tasa_cuo;
+
+
 				?>
-				<TR>
-					<TD><?php echo $cantidad ; ?> <!--cantidad-->
+					<TR>
+						<TD><?php echo $cantidad ; ?></TD> <!--cantidad-->
 						<td><?php echo $clv_uni; ?></td> <!--clave unidad est-->
 						<td><?php echo $uni_med; ?></td> <!--unidad de media-->
 						<td><?php echo $clv_pro; ?></td> <!--clve de prod/serv-->
 						<td><?php echo $clave; ?></td> <!--num de identificacion fiscal-->
 						<TD><?php echo $nam; ?></TD> <!--descripcion-->
-						<td><?php echo $round;?> </td><!--precio unitario-->
+						<td><?php echo $punit;?> </td><!--precio unitario-->
 						<TD><?php echo $desc;?></TD><!-- descuento -->
 						<TD><?php echo $impnto; ?></TD> <!--importe neto=cantidad * precio uni-->		
-					</TD></TR>   
+					</TR>   
 					<?php    
 
-					$Subtotal= number_format($Subtotal+$impnto,2);
-					$to_descuento= number_format($to_descuento+$desc,2);
-					$base= number_format($impnto-$desc,2);
-					$tot= $base*$tasa_cuo;
-
+			
 					$partidas_ .= PHP_EOL;
 					$partidas_ .= "03";
 					$partidas_ .= "|";
@@ -442,11 +456,11 @@ session_start();
 					$partidas_ .= "|";
 					$partidas_ .=$nam; 
 					$partidas_ .= "|";
-					$partidas_ .=$round; 
+					$partidas_ .= number_format($punit,2); 
 					$partidas_ .= "|";
-					$partidas_ .= $to_descuento;
+					$partidas_ .= number_format($desc,2);
 					$partidas_ .= "|";
-					$partidas_ .= $impnto;
+					$partidas_ .= number_format($impnto,2);
 					$partidas_ .= "|";
 					$partidas_ .= "|";
 					$partidas_ .=PHP_EOL;
@@ -455,7 +469,7 @@ session_start();
 					$partidas_ .= "|";
 					$partidas_ .=$tipo;
 					$partidas_ .= "|";
-					$partidas_ .=$base;
+					$partidas_ .= number_format($base,2);
 					$partidas_ .= "|";
 					$partidas_ .=$tipo_imp;
 					$partidas_ .= "|";
@@ -463,7 +477,7 @@ session_start();
 					$partidas_ .= "|";
 					$partidas_ .=$tasa_cuo;
 					$partidas_ .= "|";
-					$partidas_ .=$tot;
+					$partidas_ .= number_format($tot,2);
 					//$partidas_ .=PHP_EOL;
 
 
@@ -495,7 +509,7 @@ session_start();
 			//$nopartida =1;
 			$tipo = "TRASLADO";
 			$tipo_imp="002";
-			$tipo_fact="TASA";
+			$tipo_fact="Tasa";
 			$tasa_cuo = 0.160000;
 
 			//declarar cada una de las variables anteriores por ejeplo $tipoglobal
@@ -512,10 +526,10 @@ session_start();
 				$punit= ($partida->unite_price_c / 1.16); 
 				$cantidad =$partida->acquired_credits_c;
 				$impnto= ($punit*$cantidad); // antes de pasar hacer el calculo del importe redondear el precio unitario a dos decimales....
-				$desc =($impnto*$partida->discount_c )/100;
-				$base= number_format($impnto-$desc,2);
+				$desc =(($impnto*$partida->discount_c )/100);
+				$base= number_format($impnto-$desc,6);
 
-			
+						
 				?>
 				<tr>
 					<td width="5%" id="tipo" value=""><?php  echo $tipo;?></td>
@@ -524,31 +538,32 @@ session_start();
 					<td width="5%" id="tipo_fact"><?php echo ($tipo_fact); ?></td>
 					<td width="5%" id="tasa_cuo" value=""><?php echo $tasa_cuo->discount_c; echo ($tasa_cuo); ?></td>
 					<!-- <td width="5%"><?php $tot= ($base-($base*$tasa_cuo)); echo number_format($tot) ;?></td> <!--importe=(base*tasa -->
-					<td width="5%"><?php $tot= $base*$tasa_cuo; echo number_format($tot,2) ;?></td>
+					<td width="5%"><?php $tot= $base*$tasa_cuo; echo number_format($tot,6) ;?></td>
 				</tr>
 				<?php 
 
-				$importeglobal=number_format($importeglobal+$tot,2);
+				$importeglobal=number_format($importeglobal+$tot,6);
 				$globales= array('tipo' => $tipo, 'impuesto' => $tipo_imp, 'factor' => $tipo_fact, 'cuota' => $tasa_cuo , 'importe' => $importeglobal);
 
 				$mydata= array('tipo' => $tipo, 'impuesto' => $tipo_imp, 'factor' => $tipo_fact, 'cuota' => $tasa_cuo , 'importe' => $tot);
 
 				array_push($myarray,$mydata);
 				
-					$imp_ .='03-IMP';
-					$imp_ .= "|";
-					$imp_ .=$tipo;
-					$imp_ .= "|";
-					$imp_ .=$base;
-					$imp_ .= "|";
-					$imp_ .=$tipo_imp;
-					$imp_ .= "|";
-					$imp_ .=$tipo_fact;
-					$imp_ .= "|";
-					$imp_ .=$tasa_cuo;
-					$imp_ .= "|";
-					$imp_ .=$tot;
-					$imp_ .=PHP_EOL;
+					// //$imp_ .=PHP_EOL;
+					// $imp_ .='03-IMP';
+					// $imp_ .= "|";
+					// $imp_ .=$tipo;
+					// $imp_ .= "|";
+					// $imp_ .= number_format($base,2);
+					// $imp_ .= "|";
+					// $imp_ .=  number_format($tipo_imp,2);
+					// $imp_ .= "|";
+					// $imp_ .=$tipo_fact;
+					// $imp_ .= "|";
+					// $imp_ .=$tasa_cuo;
+					// $imp_ .= "|";
+					// $imp_ .= number_format($tot,2);
+					// $imp_ .=PHP_EOL;
 
 					// $arreglo_global[$impuesto]['tipo'] =  $tipo;
 					// $arreglo_global[$impuesto]['impuesto'] =  $tipo_imp;
@@ -596,7 +611,7 @@ session_start();
 						<td width="7.5%" id="impuesto"><?php  echo ($globales['impuesto']); ?></td>
 						<td width="7.5%" id="factor"><?php  echo ($globales['factor']); ?></td>
 						<td width="7.5%" id="cuota"><?php  echo ($globales['cuota']); ?></td>
-						<td width="7.5%" id="importe"><?php echo number_format(($globales['importe']),2);?></td>
+						<td width="7.5%" id="importe"><?php echo number_format(($globales['importe']),6);?></td>
 					</tr>
 
 				</table>
@@ -677,7 +692,7 @@ session_start();
 										Tipo de Cambio
 									</td>
 									<td width="">
-										<input type="text" name="Cambio" size="60" id="Cambio" value="1.0"   READONLY>
+										<input type="text" name="Cambio" size="60" id="Cambio" value="1"   READONLY>
 									</td>
 								</tr>
 
@@ -695,7 +710,7 @@ session_start();
 
 
 									<td width="">
-										<input type="text" name="total" id="total" size="60" value="<?php  echo number_format($total,2); ?>" class="required"   READONLY>
+										<input type="text" name="total" id="total" size="60" value="<?php  echo number_format($total,6); ?>" class="required"   READONLY>
 									</td>
 								</tr>
 
