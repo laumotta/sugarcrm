@@ -204,7 +204,7 @@ session_start();
 										Residencia Fiscal:
 									</td>
 									<td width="">	
-									<input type="text" name="rep_red_fis" id="rep_red_fis" value="<?php echo $rec->billing_address_country;?>" size="60" class="required">
+									<input type="text" name="rep_red_fis" id="rep_red_fis" value="<?php echo $rec->pais_c;?>" size="60" class="required">
 										</td>
 
 
