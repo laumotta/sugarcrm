@@ -123,7 +123,7 @@ session_start();
 							</td>
 							<td width="">
 								<span id="account_type">
-									<input type="text" name="RFC" id="RFC"  value="<?php echo $emi->rfc_c; ?>" size="60"  class=""   READONLY>
+									<input type="text" name="RFC" id="RFC"  value="<?php echo $emi->rfc_c; ?>" size="60"  class="required"   READONLY>
 									<!-- se elimina como required a los campos rfc, nombre o razon social y emisor dom(infoAdi) para pruebas-->
 								</span>
 							</td>
@@ -133,7 +133,7 @@ session_start();
 							</td>
 							<td width="">
 								<span id="name">
-									<input type="text" name="nombre_rs"  id="nombre_rs" value="<?php echo $emi->name;?>" size="60"  class=""   READONLY>
+									<input type="text" name="nombre_rs"  id="nombre_rs" value="<?php echo $emi->name;?>" size="60"  class="required"   READONLY>
 								</span>
 							</td>
 						</tr>
@@ -204,7 +204,7 @@ session_start();
 										Residencia Fiscal:
 									</td>
 									<td width="">	
-									<input type="text" name="rep_red_fis" id="rep_red_fis" value="<?php echo $rec->pais_c;?>" size="60" class="required">
+									<input type="text" name="rep_red_fis" id="rep_red_fis" value="<?php echo $rec->pais_c;?>" size="60" class="">
 										</td>
 
 
@@ -291,7 +291,7 @@ session_start();
 				Emisor Domicilio Fiscal
 			</td>
 			<td width="">
-				<input type="text" name="l_expedicion" id="l_expedicion" size="60" class="" value="<?php echo $emi->q14_c; ?>">
+				<input type="text" name="l_expedicion" id="l_expedicion" size="60" class="required" value="<?php echo $emi->q14_c; ?>">
 			</td>
 		</tr>
 

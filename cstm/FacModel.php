@@ -104,15 +104,15 @@ class factura{
 		$cadena .="|" ;
 		$cadena .=$array['Condiciones_pago'] ;
 		$cadena .="|" ;
-		$cadena .=$array['subtotal'] ;
+		$cadena .= number_format($array['subtotal'],2);
 		$cadena .="|" ;
-		$cadena .=$array['Descuento'];
+		$cadena .= number_format($array['Descuento'],2);
 		$cadena .="|" ;
 		$cadena .=$array['Moneda'] ;
 		$cadena .="|" ;
 		$cadena .=$array['Cambio'] ;
 		$cadena .="|" ;
-		$cadena .=$array['total'] ;
+		$cadena .= number_format($array['total'],2);
 		$cadena .="|"  ;
 		$cadena .=$array['tipo_comprobante'] ;
 		$cadena .="|" ;
@@ -146,7 +146,7 @@ class factura{
 		$cadena .="|" ;
 		$cadena .=$array['Retenidos'] ;
 		$cadena .="|" ;
-		$cadena .=$array['globales_importe'] ;
+		$cadena .= number_format($array['globales_importe'],2);
 		$cadena .="|" ;
 		$cadena .="INFO_ADIC" ;
 		$cadena .="|" ;
@@ -238,7 +238,9 @@ class factura{
 		"|".
 		$array['globales_cuota'] .
 		"|".
-		number_format($array['globales_importe'],2);
+		number_format($array['globales_importe'],2).
+		PHP_EOL;
+
 
 
 	file_put_contents("layout/".utf8_encode($link),$cadena.$cadena_.$imp.$cadena2);
