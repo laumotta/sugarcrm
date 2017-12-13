@@ -194,7 +194,7 @@ session_start();
 									</td>
 									<td width="">
 										<span id="name">
-										<input type="text" name="rep_name_rs"  id="rep_name_rs" value="<?php echo $rec->name;?>" size="60"  class="required"   >
+										<input type="text" name="rep_name_rs"  id="rep_name_rs" value="<?php echo $rec->name;?>" size="60"  class="required">
 										</span>
 									</td>
 								</tr>
@@ -204,7 +204,7 @@ session_start();
 										Residencia Fiscal:
 									</td>
 									<td width="">	
-									<input type="text" name="rep_red_fis" id="rep_red_fis" value="<?php echo $rec->pais_c;?>" size="60" class="">
+									<input type="text" name="rep_red_fis" id="rep_red_fis" value="<?php echo $rec->pais_c;?>" size="60">
 										</td>
 
 
