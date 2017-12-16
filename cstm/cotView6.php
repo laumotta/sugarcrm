@@ -152,8 +152,8 @@ foreach( $model->detallep($ops) as $partida)	{	?>
 <td align="right" ><?php echo $i; ?> <br /> </td>
 <td align="left" ><?php echo $partida->product_c; ?> <br /> </td>
 <td align="right" ><?php $cantidad = $partida->acquired_credits_c; echo number_format($cantidad,0); ?> <br /> </td>
-<td align="right" ><?php $unit =($partida->unite_price_c/1.16);  echo number_format($unit,4); ?> <br/> </td>
-<?php $imp = $unit* $cantidad;  ?>
+<td align="right" ><?php $unit =round(($partida->unite_price_c/1.16),2);  echo number_format($unit,2); ?> <br/> </td>
+<?php $imp = round(($unit* $cantidad),2);  ?>
 <td align="right" ><?php $descuento=$imp*($partida->discount_c/100); echo number_format(($imp),2); ?><br /> </td>
 </tr>
 <?php

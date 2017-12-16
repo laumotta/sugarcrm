@@ -41,11 +41,11 @@ color: #000000;
 			$("#rep_billing_address_town_c").addClass("required");
 			$("#rep_billing_address_state").addClass("required");
 			$("#rep_billing_address_country").addClass("required");
-	if (document.getElementById("_Descuento").value > 0){
-			$("#m_descuento").addClass("required");
-			document.getElementById("Descuento").disabled = true;
+	// if (document.getElementById("_Descuento").value > 0){
+	// 		$("#m_descuento").addClass("required");
+	// 		document.getElementById("Descuento").disabled = true;
  			
-	}
+	// }
   });
 
  
